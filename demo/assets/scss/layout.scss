@@ -1,0 +1,51 @@
+/**
+ * main styling
+ */
+
+
+body {
+  .formiga-container {
+    section {
+      margin-top: 2em;
+    }
+
+    .formiga-resume {
+      .log {
+        color: gray;
+        font-size: 9pt;
+
+      }
+    }
+  }
+
+}
+
+
+
+
+.centered {
+  text-align: center;
+}
+
+.mgbottom {
+  margin-bottom: 2em;
+}
+
+.mgleft {
+  margin-left: 2em;
+}
+
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  margin: 0 2em;
+  background-color: #ece8e8;
+  padding: 1em;
+}
+
+
+
