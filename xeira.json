@@ -1,0 +1,13 @@
+{
+  "product": "package",
+  "target": "node",
+  "source_index": "./src/index.js",
+  "linter": "eslint",
+  "transpiler": "babel",
+  "minifier": null,
+  "bundle_folder": "./dist",
+  "bundler": "rollup",
+  "test_folder": "./test",
+  "react": true,
+  "monorepo": false
+}
