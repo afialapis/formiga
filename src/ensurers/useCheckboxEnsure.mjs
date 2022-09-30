@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import {log} from '../helpers/log'
+import {log} from '../helpers/log.mjs'
 
 
 const useCheckboxEnsure = (inputRef) => {

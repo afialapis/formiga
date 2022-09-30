@@ -1,9 +1,9 @@
 import {useState, useCallback} from 'react'
-import {log} from '../helpers/log'
-import {checkValidity} from './checkValidity'
-import {getInputValue} from '../config/getInputValue'
-import {getEventTarget} from '../config/getEventTarget'
-import {getDefaultMessage} from '../config/getDefaultMessage'
+import {log} from '../helpers/log.mjs'
+import {checkValidity} from './checkValidity.mjs'
+import {getInputValue} from '../config/getInputValue.mjs'
+import {getEventTarget} from '../config/getEventTarget.mjs'
+import {getDefaultMessage} from '../config/getDefaultMessage.mjs'
 
 const useValidationHandler = (transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback) => {
   const [validity, setValidity]= useState(false)

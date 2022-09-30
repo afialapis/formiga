@@ -1,6 +1,6 @@
 {
   "name": "formiga",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Form validator for React, using and customizing HTML5 Constraint Validation API",
   "keywords": [
     "js",
@@ -40,22 +40,18 @@
   },
   "scripts": {
     "clean-demo": "rm -rf demo/dist",
-    "clean-test": "rm -f test/bundle.js",
     "clean-lib": "rm -rf lib && mkdir lib",
     "clean-dist": "rm -rf dist && mkdir dist",
-    "yy_lint": "npx xeira lint",
+    "lint": "npx xeira lint",
     "test": "npx xeira test ./test/before.mjs ./test/units/*.cjs",
-
-    "xx_lint": "eslint src",
-    "xx_test": "npm run clean-test && rollup -c rollup.test.js && karma start --singleRun",
-    "xx_lib": "npm run clean-lib && babel src -d lib",
-    "xx_dist": "npm run clean-dist && rollup -c",
-    "xx_prepare": "npm run clean-demo && npm run lint && npm run test && npm run clean-test && npm run lib && npm run dist",
-    "xx_demo": "npm run clean-demo && mkdir demo/dist && rollup -c rollup.demo.js -w",
-    "xx_reset": "npm run clean-demo && npm run clean-test && npm run clean-lib && npm run clean-dist && rm -fr node_modules package-lock.json && npm i"
+    "lib": "npm run --silent clean-lib && npx xeira transpile",
+    "dist": "npm run --silent clean-dist && npx xeira bundle",
+    "prepare": "npm run --silent clean-demo && npm run --silent lint && npm run --silent test && npm run --silent lib && npm run --silent dist",
+    "demo": "npm run --silent clean-demo && npx xeira demo",
+    "reset": "npm run --silent clean-demo && npm run --silent clean-lib && npm run --silent clean-dist && rm -fr node_modules package-lock.json && npm i"
   },
   "devDependencies": {
-    "xeira": "^0.0.16"
+    "xeira": "^0.0.20"
   },
   "dependencies": {
     "react": ">=16.13.1"

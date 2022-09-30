@@ -1,5 +1,5 @@
 //import {log} from '../helpers/log'
-import {parseForCompare} from '../helpers/compare'
+import {parseForCompare} from '../helpers/compare.mjs'
 
 const countDecimals = (f) => {
   try {

@@ -6,7 +6,7 @@ describe('Forms', function () {
   this.timeout(100)
 
   it("should render an empty Form", () => {   
-    const {useForm} = global.formigaPkg
+    const {useForm} = global.formiga
 
     const fid= 'formiga_empty_form'
     const App = () => {

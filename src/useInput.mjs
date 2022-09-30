@@ -1,11 +1,11 @@
 import {useEffect, useRef, useCallback} from 'react'
-import {log} from './helpers/log'
+import {log} from './helpers/log.mjs'
 
-import {useCheckProps} from './checkers/useCheckProps'
-import {useInputFilter} from './inputFilter/useInputFilter'
+import {useCheckProps} from './checkers/useCheckProps.mjs'
+import {useInputFilter} from './inputFilter/useInputFilter.mjs'
 //import {useCheckboxEnsure} from './ensurers/useCheckboxEnsure'
-import {useValidationListener} from './validation/useValidationListener'
-import {useValidationHandler} from './validation/useValidationHandler'
+import {useValidationListener} from './validation/useValidationListener.mjs'
+import {useValidationHandler} from './validation/useValidationHandler.mjs'
 
 const useInput = (props) => {
 

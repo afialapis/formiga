@@ -7,7 +7,7 @@ describe('Buttons', function () {
 
   it("should render custom form buttons", async () => {   
     
-    const {useForm} = global.formigaPkg
+    const {useForm} = global.formiga
     const App = () => {
       const [formRef, _valid, _readElements] = useForm()
 

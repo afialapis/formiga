@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import {makeInputFilter} from './makeInputFilter'
+import {makeInputFilter} from './makeInputFilter.mjs'
 
 
 // This event list would cover every need:

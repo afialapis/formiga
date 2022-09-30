@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
-import {log} from '../helpers/log'
-import {checkProps} from './checkProps'
+import {log} from '../helpers/log.mjs'
+import {checkProps} from './checkProps.mjs'
 
 const useCheckProps = (inputRef, doRepeat, doNotRepeat, inputFilter) => {
 

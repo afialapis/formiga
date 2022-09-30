@@ -1,5 +1,5 @@
 import {useState, useRef, useEffect, useCallback} from 'react'
-import {log} from './helpers/log'
+import {log} from './helpers/log.mjs'
 
 
 const useForm = () => {

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import {getValidationEvents} from '../config/getValidationEvents'
-import {log} from '../helpers/log'
+import {getValidationEvents} from '../config/getValidationEvents.mjs'
+import {log} from '../helpers/log.mjs'
 
 const useValidationListener = (inputRef, handler ) => {
 
