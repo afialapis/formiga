@@ -1,6 +1,6 @@
 {
   "name": "formiga",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Form validator for React, using and customizing HTML5 Constraint Validation API",
   "keywords": [
     "js",
@@ -29,13 +29,13 @@
     "formiga.png"
   ],
   "type": "module",
-  "main": "./dist/formiga.umd.main.js",
+  "main": "./lib/index.mjs",
   "cjs": "./dist/formiga.cjs",
   "browser": "./dist/formiga.umd.js",
   "module": "./dist/formiga.mjs",
   "exports": {
     "import": "./dist/formiga.mjs",
-    "default": "./dist/formiga.umd.main.js",
+    "default": "./lib/index.mjs",
     "require": "./dist/formiga.cjs"
   },
   "scripts": {
@@ -51,7 +51,7 @@
     "reset": "npm run --silent clean-demo && npm run --silent clean-lib && npm run --silent clean-dist && rm -fr node_modules package-lock.json && npm i"
   },
   "devDependencies": {
-    "xeira": "^0.0.21"
+    "xeira": "^0.0.22"
   },
   "dependencies": {
     "react": ">=16.13.1"
