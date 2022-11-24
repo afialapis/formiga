@@ -1,7 +1,7 @@
 {
   "name": "formiga",
-  "version": "0.0.4",
-  "description": "A Form validator for React, using and customizing HTML5 Constraint Validation API",
+  "version": "0.0.5",
+  "description": "The simplest -yet effective- form validator for React",
   "keywords": [
     "js",
     "react",

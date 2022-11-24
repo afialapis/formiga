@@ -5,11 +5,40 @@
 
 body {
   .formiga-container {
-    section {
-      margin-top: 2em;
-    }
+    display: flex;
 
+    .formiga-form {
+      flex: 75%;
+
+
+
+      .formiga-form-inputs {
+        display: flex;
+        .formiga-form-inputs-left,
+        .formiga-form-inputs-middle,
+        .formiga-form-inputs-rigth {
+          flex: 33%;
+          padding: 0 2em;
+        }
+
+        .formiga-form-input-type-section {
+          margin-top: 2em;
+  
+          h2 {
+            border-bottom: 1px solid gray;
+          }
+        }        
+      }
+
+
+      .formiga-form-buttons {
+        text-align: center;
+        margin-top: 2em;
+      }
+    }
     .formiga-resume {
+      flex: 25%;
+      padding-left: 2em;
       .log {
         color: gray;
         font-size: 9pt;
@@ -22,7 +51,7 @@ body {
 
 
 
-
+/*
 .centered {
   text-align: center;
 }
@@ -46,6 +75,6 @@ body {
   background-color: #ece8e8;
   padding: 1em;
 }
-
+*/
 
 

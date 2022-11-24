@@ -107,25 +107,12 @@ h3 {
 			color: $brand-white;
 		}
 	}
-}
-.btn-secondary {
-	background: $brand-secondary;
-	color: $brand-white;
-	border: 2px solid $brand-secondary;
-	&:hover, &:focus, &:active {
-		background: darken($brand-secondary, 5%)!important;
-		border-color: darken($brand-secondary, 5%)!important;
-		color: $brand-white;
-	}
-	&.btn-outline {
-		background: transparent;
-		color: $brand-secondary;
-		border: 2px solid $brand-secondary;
-		&:hover, &:focus, &:active {
-			background: $brand-secondary;
-			color: $brand-white;
-		}
-	}
+	&.disabled {
+    pointer-events: none;
+		cursor: none;
+		background: lighten($brand-primary, 15%)!important;
+		border-color: lighten($brand-primary, 15%)!important;
+	}	
 }
 
 

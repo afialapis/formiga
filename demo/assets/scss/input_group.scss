@@ -1,28 +1,34 @@
-.formiga-example-input-group {
+.formiga-input-group {
   margin-top: 1em;
+  padding: 0.5em;
+  border: 0.25px solid #e8e8e8;
+  border-right: 0.25px solid #e8e8e8;
 
-  .formiga-example-input-description {
-    display: flex;
+  .formiga-input-header {
+    
+    .formiga-input-label {
 
-    label {
-      display: block;
-      flex: 1 0 auto;
-      color: #555050;
+      label {
+        color: #555050;
+      }
     }
 
-    .formiga-example-input-description-text {
-      color: #473939;
+    .formiga-input-description {
+      color: #6e6161;
       font-size: 12px;
-
+      font-style: italic;
+      text-align: right;
     }
+
+
   }
 
   input, 
   textarea, 
   select {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
+    padding: 6px 10px;
+    margin: 4px 0;
     display: inline-block;
     box-sizing: border-box;
   }
@@ -35,7 +41,7 @@
 
   input:focus,
   textarea:focus {
-    border-color: rgb(101, 114, 233);
+    border-color: #6572e9;
   }
 
   input.invalid,
@@ -43,15 +49,15 @@
   select.invalid {
     border-color: red;
   }
-  .formiga-example-input-feedback {
+  .formiga-input-feedback {
     color: red;
     font-style: italic;
     font-size: 0.8em;
   }
 
-  input.valid > .formiga-example-input-feedback,
-  textarea.valid > .formiga-example-input-feedback,
-  select.valid > .formiga-example-input-feedback {
+  input.valid > .formiga-input-feedback,
+  textarea.valid > .formiga-input-feedback,
+  select.valid > .formiga-input-feedback {
     display: none;
   }
 }

@@ -1,43 +1,63 @@
 # formiga
 
 ![Formiga logo](https://formiga.afialapis.com/assets/images/logo/formiga_name.png)
-
 [![NPM Version](https://badge.fury.io/js/formiga.svg)](https://www.npmjs.com/package/formiga)
 [![Dependency Status](https://david-dm.org/afialapis/formiga.svg)](https://david-dm.org/afialapis/formiga)
 [![NPM Downloads](https://img.shields.io/npm/dm/formiga.svg?style=flat)](https://www.npmjs.com/package/formiga)
 
-A Form validator for React, using and customizing [HTML5 Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation).
+The simplest -yet effective- form validator for React: stick to -and empower- web standards ([HTML5 Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation)) instead of ignore them.
+
 
 # Table of Contents
 
-1. [Demo](#demo)
-2. [HTML5 Constraint Validation API?](#html5-constraint-validation-api)
-3. [Premature Validation?](#premature-Validation)
-4. [Install](#install)
-5. [Getting started](#getting-started)
-6. [Docs](#docs)
+1. [Intro](#intro)
+2. [Premature Validation](#premature-validation)
+3. [UI integrations](#ui-integrations)
+4. [Demo](#demo)
+5. [Install](#install)
+6. [Getting started](#getting-started)
+7. [Docs](#docs)
+
+# Intro
+
+`formiga` aims to provide full `<form>` state and validation functionalities with:
+
+- no dependencies
+- no boilerplate: 
+  - no wrapping components, just use standard `<form>`, `<input>`, `<textarea>` and `<select>` `HTML` elements
+  - no API to learn: just a couple of hooks `useForm` and `useInput`
+- HTML validation at our service
+  - no over-coded validation logics
+  - just stick to standard [_HTML5 Constraint Validation API_](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation)
+  - validate your input through standard attributes [(`required`, `minLength`, `maxLength`, `pattern`, ...)](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation)
+  - extend it with a few basic validations that HTML does not provide (`allowedValues`, `disallowedValues`, `doRepeat`, `doNotRepeat` ,`checkValue`), while keeping in sync the element's [ValidityState](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState)
+  - empower it with [`prematureValidation`](#premature-validation)
+
+# Premature Validation
+
+[_HTML5 Constraint Validation API_](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation) checks for validity changes when the input changes. Depending on the browser, it may mean: when the input's value changes or just when the input loses the focus.
+
+Formiga is here to make your Forms much nicer: with [`prematureValidation`](#premature-validation), the [ValidityState](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState) is updated *always* while typing!
+
+# UI integrations
+
+`formiga` cares just about state and validation of your forms. UI and styling is out of scope. That's why you will probably not use `formiga` directly, but some of the integrations with some UI library. List is tiny yet:
+
+· [formiga-reactstrap](https://github.com/afialapis/formiga-reactstrap)
+
+Given `formiga` works with native HTML elements (`<form>`, `<input>`, `<textarea>`, `<select>`), you will find pretty easy to couple it with any UI library. Or even just with some custom `CSS` if you go minimalist, as in our [Demo](#demo).
 
 
 # Demo
 
-Check a live demo at [formiga.afialapis.com](https://formiga.afialapis.com)
+Check a live demo at [formiga.afialapis.com](https://formiga.afialapis.com).
 
-# HTML5 Constraint Validation API?
+Or run it locally with:
 
-Yes: instead of providing lots of verbose-methods-you-must-learn to validate your inputs, Formiga will just:
-  - let you render your input elements _completely as you need_
-  - check [validation constraints](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation) in those inputs (`required`, `minLength`, `maxLength`, `pattern`, ...)
-  - provide you the validation status so you can render them in consequence
+```
+  npm run demo
+```
 
-Even more: Formiga extends these constraints:
-  - it accepts some custom constraints (`allowedValues` or `disallowedValues` lists, `doRepeat` or `doNotRepeat` other form's fields, or even a custom `checkValue` callback)
-  - checks these custom constraints and updates accordingly the element's [ValidityState](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState)
-
-# Premature Validation?
-
-_HTML5 Constraint Validation API_ checks for validity changes when the input changes. Depending on the browser, it means: when the input loses the focus.
-
-Formiga is here to make your Forms much nicer: with `prematureValidation`, the ValidityState is updated while typing!
 
 # Install
 
@@ -47,7 +67,7 @@ Formiga is here to make your Forms much nicer: with `prematureValidation`, the V
 
 # Getting started 
 
-Formiga provides just two elements: `VForm` and `VInput`.
+Formiga provides just two hooks: `useForm` and `useInput`.
 
 `VForm` will be the parent element. It just renders a `form` element, and provide a couple of render props (`renderInputs` and `renderButtons`) so you can render the rest.
 
@@ -59,48 +79,72 @@ Let's check a basic example ([try it at CodePen](https://codepen.io/afialapis/pe
 
 
 ```javascript
-import React, {useState} from 'react';
-import {VForm, VInput} from 'formiga'
+import React, {useState} from 'react'
 
-const MyValidatedForm = () => {
+const FormigaForm = () => {
 
-  const [myText, setMyText]= React.useState('')
-  
-  return (
-      <VForm 
-        renderButtons= {(valid, elements) => null}
+  const [formRef, valid, formElements] = useForm()
+  const [name, setName]= useState('John Doe')
+  const [age, _setAge]= useState('33') 
 
-         renderInputs= {(formActions) => 
-           <VInput
-              type                 = "text"
-              /* formActions must be passed to every VInput */
-              formActions          = {formActions}
-              /* Formiga provides some custom constraints */
-              disallowedValues     = {["NO"]}
-              /* prematureValidation will not wait input to lose focus */
-              prematureValidation  = {true}
-              render = {(valid, message, inputRef) => 
-                <div>
-                  <input ref       = {inputRef}
-                         name      = 'myText'
-                         className = {valid ? 'valid' : 'invalid'}
-                         value     = {myText}
-                         onChange  = {(event) => setMyText(event.target.value)}
-                         /* HTML Validation constraints are managed directly on HTML input elements*/
-                         required  = {true}
-                         minLength = {2}
-                         maxLength = {50}
-                  />
-                  <div className="formiga-example-input-feedback">
-                    {message}
-                  </div>
-                </div>
-              }
-            /> 
-          }
-      />
+  const [nameRef, nameValid, nameMessage] = useInput({
+    type: 'text',
+    disallowedValues: ["John Not Doe"],
+    inputFilter: 'latin'
+  })
+  const [ageRef, ageValid, ageMessage] = useInput({
+    type: 'text',
+    checkValue: (v) => !isNaN(v) && parseInt(v)>=18,
+    inputFilter: 'int'
+  })
+
+
+  const handleSubmit = () => {
+    let resume= ''
+
+    Object.keys(formElements)
+      .map((name) => {
+        const el= formElements[name]
+        resume+= `Input ${el.name} ${el.valid ? 'is' : 'is not'} valid\n`
+      })
+
+    console.log(resume)
+    //
+    // Input name is valid
+    // Input age is valid
+  }
+
+
+  return (  
+
+    <form ref = {formRef}>
+        
+      {/* A controlled input */}
+      <input ref       = {nameRef}
+             name      = {'name'}
+             className = {nameValid ? 'valid' : 'invalid'}
+             required  = {true}
+             value     = {name}
+             onChange  = {(event) => setName(event.target.value)}/>
+
+      {/* An uncontrolled input */}
+      <input ref       = {ageRef}
+             name      = {'age'}
+             className = {ageValid ? 'valid' : 'invalid'}
+             required  = {true}
+             defaultValue = {age}/>
+
+
+      <button
+             onClick  ={(_ev) => handleSubmit()}
+             disabled = {! valid}>
+        Save
+      </button>
+
+    </form>
+
   )
-} 
+}          
 
 ```
 

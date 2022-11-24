@@ -1,72 +1,76 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import {useForm} from '../../src'
 
-import {DemoInputCheckbox} from './inputs/DemoInputCheckbox'
-import {DemoInputColor} from './inputs/DemoInputColor'
-import {DemoInputDate} from './inputs/DemoInputDate'
-import {DemoInputFile} from './inputs/DemoInputFile'
-import {DemoInputNumber} from './inputs/DemoInputNumber'
-import {DemoInputSelect} from './inputs/DemoInputSelect'
-import {DemoInputSelectMultiple} from './inputs/DemoInputSelectMultiple'
-import {DemoInputTextArea} from './inputs/DemoInputTextArea'
-import {DemoInputText} from './inputs/DemoInputText'
 
-const INPUT_TYPES= [
-  {type: 'text', comp: DemoInputText},
-  {type: 'textarea', comp: DemoInputTextArea},
-  {type: 'number', comp: DemoInputNumber},
-  {type: 'date', comp: DemoInputDate},
-  {type: 'checkbox', comp: DemoInputCheckbox},
-  {type: 'select', comp: DemoInputSelect},
-  {type: 'select-multiple', comp: DemoInputSelectMultiple},
-  {type: 'color', comp: DemoInputColor},
-  {type: 'file', comp: DemoInputFile}
-]
+
+import DemoInputCheckbox from './inputs/checkbox/DemoInputCheckbox'
+import DemoInputColor from './inputs/color/DemoInputColor'
+import DemoInputDate from './inputs/date/DemoInputDate'
+import DemoInputFile from './inputs/file/DemoInputFile'
+import DemoInputNumber from './inputs/number/DemoInputNumber'
+import DemoInputSelect from './inputs/select/DemoInputSelect'
+import DemoInputText from './inputs/text/DemoInputText'
+import DemoInputTextArea from './inputs/textarea/DemoInputTextArea'
+
+const _getResumeFromFormElements = (elements) => {
+  const resume= []
+  elements.map(el => {
+    resume.push({msg: el.name, style:  {marginTop: '1em', fontWeight: 'bold'}})
+    resume.push({msg: el.value, style: {fontStyle: 'italic'}})
+    resume.push({msg: `is ${el.valid ? 'valid!' : `invalid (${el.message})`}`, 
+              style: {color: el.valid ? 'green' : 'red'}})
+  })
+
+  return resume
+}
 
 
 const Demo = () => {
-  const [resume, setResume]= useState([{msg: "Save form to see a resume here!"}])
+  const [resume, setResume]= useState([])
+  const [formRef, valid, elements] = useForm()
+  
+  const updateResume = useCallback(() => {
+    setResume(_getResumeFromFormElements(elements))
+  }, [elements])
 
-  const [formRef, valid, readElements] = useForm()
+  useEffect (() => {
+    updateResume()
+  }, [updateResume])
 
-  const handleSubmit = (valid, felements) => {
-    const nResume= []
-    const elements= felements()
-    Object.keys(elements)
-      .map((name) => {
-        const el= elements[name]
-        nResume.push({msg: name, style:  {marginTop: '1em', fontWeight: 'bold'}})
-        nResume.push({msg: el.value, style: {fontStyle: 'italic'}})
-        nResume.push({msg: `is ${el.valid ? 'valid!' : `invalid (${el.message})`}`, 
-                   style: {color: el.valid ? 'green' : 'red'}})
-      })
 
-    setResume(nResume)
-  }
-
+  console.log('DEMO render....')
 
   return (  
 
     <div className="formiga-container">
-      <h1>Input Types</h1>
-      <form ref = {formRef}>
-          
-        {INPUT_TYPES.map((inputType) => 
-            <section key={`section_${inputType.type}`}
-                  id={inputType.type}>
-              <h2>{inputType.type}</h2>
-                <inputType.comp/>
-            </section>
-          )
-        }
-
-        <section className="centered">
-          <a className="btn btn-primary"
-                  onClick={(_ev) => handleSubmit(valid, readElements)}>
-                    {valid ? 'Submit' : 'Invalid yet'}
-                  </a>
-        </section>                 
-      </form>
+      <div className="formiga-form">
+        <h1>{"Formiga's demo"}</h1>
+        <form ref = {formRef}>
+          <div className="formiga-form-inputs">
+            <div className="formiga-form-inputs-left">
+              <DemoInputText/>
+              <DemoInputTextArea/>
+            </div>
+            <div className="formiga-form-inputs-middle">
+               <DemoInputNumber/>
+               <DemoInputDate/>
+               <DemoInputCheckbox/>
+            </div>
+            <div className="formiga-form-inputs-right">
+              <DemoInputSelect/>
+              <DemoInputColor/>
+              <DemoInputFile/>
+            </div>
+          </div>
+            
+          <div className="formiga-form-buttons">
+            <a className={`btn btn-primary ${valid ? '' : 'disabled'}`}
+               onClick={(_ev) => updateResume()}>
+                {valid ? 'Submit' : 'Check wrong values before sumitting'}
+            </a>
+          </div>                 
+        </form>
+      </div>
 
       <div className="formiga-resume">
         <h1>Resume</h1>
