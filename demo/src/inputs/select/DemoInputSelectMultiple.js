@@ -18,7 +18,7 @@ const DemoInputSelectMultiple = () => {
 
   const [times, setTimes]= useState(['3', '5', '7'])
 
-  const [inputRef, valid, message] = useInput({
+  const [inputRef, {valid, message}] = useInput({
     type: 'select-multiple',
     disallowedValues: [['1', '3', '5', '7']]
   })

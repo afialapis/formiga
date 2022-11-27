@@ -5,19 +5,19 @@ import {DemoInputGroup} from '../DemoInputGroup'
 const DemoInputNumberFloatStep = () => {
 
   const [size, setSize]= useState(1.44)
-  const [sizeRef, sizeValid, sizeMessage] = useInput({})  
+  const [sizeRef, {valid, message}] = useInput({})  
 
   return (
 
     <DemoInputGroup 
       label       = {"Still not sure... Your size?"}
       description = {"Some float (max 2 decimals, native step = 0.01)."}
-      message     = {sizeMessage}>
+      message     = {message}>
       
       <input  ref       = {sizeRef}
               type      = "number"
               name      = {'size'}
-              className = {sizeValid ? 'valid' : 'invalid'}
+              className = {valid ? 'valid' : 'invalid'}
               value     = {size}
               step      = {0.01}
               required  = {true}

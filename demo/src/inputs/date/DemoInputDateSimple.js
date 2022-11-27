@@ -12,7 +12,7 @@ const getToday = (add= 0) => {
 
 const DemoInputDateSimple = () => {
 
-  const [inputRef, valid, message] = useInput({
+  const [inputRef, {valid, message}] = useInput({
     type: 'text',
     disallowedValues: [getToday()]
   })

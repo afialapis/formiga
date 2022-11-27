@@ -4,7 +4,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputColorSimple = () => {
 
-  const [inputRef, valid, message] = useInput({
+  const [inputRef, {valid, message}] = useInput({
     type: 'color',
     disallowedValues: ['#000000', '#FFFFFF', '#ffffff'],
     feedback: 'Neither black nor white'

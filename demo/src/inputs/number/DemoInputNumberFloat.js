@@ -6,7 +6,7 @@ const DemoInputNumberFloat = () => {
 
   const [weight, setWeight]= useState(105.876)
 
-  const [weightRef, weightValid, weightMessage] = useInput({
+  const [weightRef, {valid, message}] = useInput({
     decimals: 3
   })
   
@@ -19,12 +19,12 @@ const DemoInputNumberFloat = () => {
     <DemoInputGroup 
       label       = {"Hmm... sounds like too much pills. How much do you weight?"}
       description = {"Some float (max 3 decimals, decimals = 3)."}
-      message     = {weightMessage}>
+      message     = {message}>
       
       <input  ref       = {weightRef}
               type      = "number"
               name      = {'weight'}
-              className = {weightValid ? 'valid' : 'invalid'}
+              className = {valid ? 'valid' : 'invalid'}
               value     = {weight}
               required  = {true}
               onChange  = {(ev) => handleWeightChange(ev.target.value)}>

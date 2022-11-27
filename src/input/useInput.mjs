@@ -60,8 +60,11 @@ const useInput = (props) => {
     log_input(inputNode, 'render')
   }
   
-  
-  return [inputRef, validity==='', validity, () => validateInput(inputNode)]
+  return [inputRef, {
+    valid: validity==='', 
+    message: validity, 
+    forceValidation: () => validateInput(inputNode)
+  }]
 }
 
 

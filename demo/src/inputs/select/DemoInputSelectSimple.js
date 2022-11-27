@@ -13,7 +13,7 @@ const LIST_OPTIONS= [
 const DemoInputSelectSimple = () => {
   const [experience, setExperience]= useState(undefined /*'1'*/)
 
-  const [inputRef, valid, message] = useInput({
+  const [inputRef, {valid, message}] = useInput({
     type: 'select',
     disallowedValues: ['3', '4']
   })

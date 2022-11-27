@@ -87,12 +87,12 @@ const FormigaForm = () => {
   const [name, setName]= useState('John Doe')
   const [age, _setAge]= useState('33') 
 
-  const [nameRef, nameValid, nameMessage] = useInput({
+  const [nameRef, nameValidity] = useInput({
     type: 'text',
     disallowedValues: ["John Not Doe"],
     inputFilter: 'latin'
   })
-  const [ageRef, ageValid, ageMessage] = useInput({
+  const [ageRef, ageValidity] = useInput({
     type: 'text',
     checkValue: (v) => !isNaN(v) && parseInt(v)>=18,
     inputFilter: 'int'
@@ -122,7 +122,7 @@ const FormigaForm = () => {
       {/* A controlled input */}
       <input ref       = {nameRef}
              name      = {'name'}
-             className = {nameValid ? 'valid' : 'invalid'}
+             className = {nameValidity.valid ? 'valid' : 'invalid'}
              required  = {true}
              value     = {name}
              onChange  = {(event) => setName(event.target.value)}/>
@@ -130,7 +130,7 @@ const FormigaForm = () => {
       {/* An uncontrolled input */}
       <input ref       = {ageRef}
              name      = {'age'}
-             className = {ageValid ? 'valid' : 'invalid'}
+             className = {ageValidity.valid ? 'valid' : 'invalid'}
              required  = {true}
              defaultValue = {age}/>
 

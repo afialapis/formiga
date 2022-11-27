@@ -5,7 +5,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 const DemoInputTextAreaSimple = () => {
   const [story, setStory]= useState('It started a warm Friday\'s night. I was bored...')
 
-  const [inputRef, valid, message] = useInput({
+  const [inputRef, {valid, message}] = useInput({
     type: 'textarea'
   })
 

@@ -4,7 +4,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputCheckBoxSimple = () => {
 
-  const [inputRef, valid, message] = useInput({
+  const [inputRef, {valid, message}] = useInput({
     type: 'checkbox',
     disallowedValues: [true]
   })

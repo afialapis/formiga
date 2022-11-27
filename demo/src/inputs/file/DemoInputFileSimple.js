@@ -4,7 +4,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputFileSimple = () => {
 
-  const [inputRef, valid, message] = useInput({
+  const [inputRef, {valid, message}] = useInput({
     type: 'file'
   })
 
