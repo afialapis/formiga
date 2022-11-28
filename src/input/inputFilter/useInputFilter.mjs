@@ -18,7 +18,9 @@ const useInputFilter = (inputNode, inputFilter ) => {
       return
     }
 
-    if (inputNode.type.toLowerCase() != 'text') {
+    const innerInputNode= inputNode?.current || inputNode
+
+    if (innerInputNode.type.toLowerCase() != 'text') {
       return
     }
 
@@ -30,10 +32,10 @@ const useInputFilter = (inputNode, inputFilter ) => {
     // https://jsfiddle.net/emkey08/zgvtjc51
 
     
-    const theInputFilter= makeInputFilter(inputFilter, inputNode.name)
+    const theInputFilter= makeInputFilter(inputFilter, innerInputNode.name)
 
     // init auxiliar properties
-    inputNode.oldValue = inputNode.value
+    innerInputNode.oldValue = innerInputNode.value
 
     const filterEventListener = function(event) {
       if (theInputFilter(event.target.value)) {
@@ -52,15 +54,15 @@ const useInputFilter = (inputNode, inputFilter ) => {
     }
 
     INPUT_FILTER_EVENT_TYPES.forEach(function(eventType) {
-      inputNode.addEventListener(eventType, filterEventListener)
+      innerInputNode.addEventListener(eventType, filterEventListener)
       allListeners[eventType]= filterEventListener
     })
 
     // clean listeners function
     const removeAllChangeListeners = () => {
-      if (inputNode!=undefined) {
+      if (innerInputNode!=undefined) {
         Object.keys(allListeners).map((eventType) => {
-          inputNode.removeEventListener(eventType, allListeners[eventType])
+          innerInputNode.removeEventListener(eventType, allListeners[eventType])
         })
       }
     }   

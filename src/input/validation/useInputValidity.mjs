@@ -27,7 +27,7 @@ const useGetInputVailidity = (transformValue, checkValue, allowedValues, disallo
     return nValidity
   }, [setCustomValidity, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback])
 
-  return [validity, validateInput]
+  return [validity, validateInput, setCustomValidity]
 }
 
 export default useGetInputVailidity

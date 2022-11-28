@@ -18,7 +18,7 @@ const useInput = (props) => {
   
   const [firstValidated, setFirstValidated]= useState(false)
   const [inputNode, setInputNode]= useState(undefined)
-  const [validity, validateInput]  = useInputValidity(transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback)
+  const [validity, validateInput, setCustomValidity]  = useInputValidity(transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback)
   
   //
   // Specific effect to check props consistency. Just DEV time
@@ -59,11 +59,33 @@ const useInput = (props) => {
   if (inputNode!=undefined) {
     log_input(inputNode, 'render')
   }
+
+  const forceValidation = useCallback(() => {
+    if (inputNode!=undefined) {
+      validateInput(inputNode)
+    }
+  }, [inputNode, validateInput])
+
+  const forceValue = useCallback((v) => {
+    if (inputNode!=undefined) {
+      inputNode.value = v
+    }
+  }, [inputNode])
+
+  const forceValidity = useCallback((msg) => {
+    if (inputNode!=undefined) {
+      setCustomValidity(inputNode, msg)
+    }
+  }, [inputNode, setCustomValidity])
+
   
   return [inputRef, {
     valid: validity==='', 
     message: validity, 
-    forceValidation: () => validateInput(inputNode)
+    inputNode,
+    forceValidation,
+    forceValue,
+    forceValidity
   }]
 }
 
