@@ -5,7 +5,7 @@ import {log} from '../helpers/log.mjs'
 const attachFormValidationListener = (formNode, handler) => {
   const formValidityListener = (event) => {
 
-    log('form', `formiga-form-change on ${event.detail.name} (t: ${event.detail.type}, v: ${event.detail.value.toString()})`)
+    log('form', `formiga-form-change on ${event?.detail?.name} (t: ${event?.detail?.type}, v: ${event?.detail?.value?.toString()})`)
     
     handler(getEventTarget(event))
   }

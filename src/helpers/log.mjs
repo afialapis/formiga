@@ -1,10 +1,10 @@
-let LOG_ENABLED= true
+let LOG_ENABLED= false
 
-try {
-  if (process.env.NODE_ENV !== "production") {
-    LOG_ENABLED= true
-  }
-} catch(_){}
+// try {
+//   if (process.env.NODE_ENV !== "production") {
+//     LOG_ENABLED= true
+//   }
+// } catch(_){}
 
 const log = (w, s) => {
   if (! LOG_ENABLED) {
