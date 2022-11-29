@@ -35,7 +35,7 @@ const DemoInputSelectMultiple = () => {
     <DemoInputGroup 
       label       = {"What times you prefer to take a Formiga?"}
       description = "All even hours required"
-      message     = {input.message}>
+      feedback    = {input.feedback}>
 
       <select ref          = {input.ref}
               name         = {'times'}

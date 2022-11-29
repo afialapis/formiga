@@ -1,6 +1,6 @@
 {
   "name": "formiga",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "The simplest -yet effective- form validator for React",
   "keywords": [
     "js",

@@ -20,7 +20,7 @@ const DemoInputTextName = () => {
     <DemoInputGroup 
       label       = {"Your name here"}
       description = {"Controlled. Required. 'John Doe' is disallowed. Latin chars."}
-      message     = {input.message}>
+      feedback    = {input.feedback}>
       <input ref       = {input.ref}
               name      = {'name'}
               className = {input.valid ? 'valid' : 'invalid'}

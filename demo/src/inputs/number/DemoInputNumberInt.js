@@ -22,7 +22,7 @@ const DemoInputNumberInt = () => {
     <DemoInputGroup 
       label       = {"How many pills per dose would you like?"}
       description = {"Some >=6 integer. Decimals allowed but invalid (decimals=1)."}
-      message     = {input.message}>
+      feedback    = {input.feedback}>
       <input  ref       = {input.ref}
               type      = "number"
               name      = {'pills'}

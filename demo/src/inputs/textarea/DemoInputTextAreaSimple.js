@@ -17,7 +17,7 @@ const DemoInputTextAreaSimple = () => {
     <DemoInputGroup 
       label       = {"Tell us more about your love story with Formiga"}
       description = {`Not required. Min length 50 (currently ${story.length}).`}
-      message     = {input.message}>
+      feedback    = {input.feedback}>
       <textarea 
             ref       = {input.ref}
             name      = {'story'}

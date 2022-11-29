@@ -20,7 +20,7 @@ const DemoInputColorSimple = () => {
     <DemoInputGroup 
       label       = {"What color has your world now?"}
       description = "Neither black nor white!"
-      message     = {input.message}>
+      feedback    = {input.feedback}>
       <input ref         = {input.ref}
               type        = "color"
               name        = {'color'}

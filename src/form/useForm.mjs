@@ -14,15 +14,15 @@ const _getFormElements = (node) => {
 
     const name = el.name
     const type = el.type || el.getAttribute('type')
-    const message= el.getAttribute('data-formiga-validity') || ''
+    const feedback= el.getAttribute('data-formiga-validity') || ''
     const value= el.getAttribute('data-formiga-value') || ''
-    const valid = message==''
+    const valid = feedback==''
 
     elements.push({
       name,
       type,
       valid,
-      message, 
+      feedback, 
       value
     })
   } 

@@ -17,7 +17,7 @@ const _getResumeFromFormElements = (elements) => {
   elements.map(el => {
     resume.push({msg: el.name, style:  {marginTop: '1em', fontWeight: 'bold'}})
     resume.push({msg: el.value, style: {fontStyle: 'italic'}})
-    resume.push({msg: `is ${el.valid ? 'valid!' : `invalid (${el.message})`}`, 
+    resume.push({msg: `is ${el.valid ? 'valid!' : `invalid (${el.feedback})`}`, 
               style: {color: el.valid ? 'green' : 'red'}})
   })
 

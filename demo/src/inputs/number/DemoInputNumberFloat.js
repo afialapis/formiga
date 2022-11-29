@@ -19,7 +19,7 @@ const DemoInputNumberFloat = () => {
     <DemoInputGroup 
       label       = {"Hmm... sounds like too much pills. How much do you weight?"}
       description = {"Some float (max 3 decimals, decimals = 3)."}
-      message     = {input.message}>
+      feedback    = {input.feedback}>
       
       <input  ref       = {input.ref}
               type      = "number"

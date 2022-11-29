@@ -105,7 +105,7 @@ const useInput = (props) => {
     ref: inputRef,
     node: inputNode,
     valid: validity==='', 
-    message: validity, 
+    feedback: validity, 
     validate,
     setValue,
     setValidity,

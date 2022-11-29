@@ -27,7 +27,7 @@ const DemoInputDateSimple = () => {
     <DemoInputGroup 
       label       = {"When will you take your next Formiga?"}
       description = "Why would you wait till tomorrow"
-      message     = {input.message}>
+      feedback    = {input.feedback}>
       <input ref          = {input.ref}
              type         = "date"
              name         = {'when'}

@@ -12,7 +12,7 @@ const DemoInputNumberFloatStep = () => {
     <DemoInputGroup 
       label       = {"Still not sure... Your size?"}
       description = {"Some float (max 2 decimals, native step = 0.01)."}
-      message     = {input.message}>
+      feedback    = {input.feedback}>
       
       <input  ref       = {input.ref}
               type      = "number"

@@ -19,7 +19,7 @@ const DemoInputCheckBoxSimple = () => {
     <DemoInputGroup 
       label       = {"Did you notice side effects?"}
       description = ""
-      message     = {input.message}>
+      feedback    = {input.feedback}>
       <input ref       = {input.ref}
              type      = "checkbox"
              name      = {'effects'}

@@ -13,7 +13,7 @@ const DemoInputFileSimple = () => {
     <DemoInputGroup 
       label       = {"Upload a copy of your ID Card, authorities must know you"}
       description = ""
-      message     = {input.message}>
+      feedback    = {input.feedback}>
       <input ref       = {input.ref}
              type      = "file"
              name      = {'id_card'}
