@@ -5,7 +5,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 const DemoInputTextAge = () => {
   const [age, _setAge]= useState('33') 
 
-  const [ageRef, {valid, message}] = useInput({
+  const input = useInput({
     type: 'text',
     checkValue: (v) => !isNaN(v) && parseInt(v)>=18,
     inputFilter: 'int'
@@ -15,10 +15,10 @@ const DemoInputTextAge = () => {
     <DemoInputGroup 
       label       = {"Your age here"}
       description = {"Uncontrolled. Required. Some >18 integer (through inputFilter)"}
-      message     = {message}>
-      <input ref       = {ageRef}
+      message     = {input.message}>
+      <input ref       = {input.ref}
               name      = {'age'}
-              className = {valid ? 'valid' : 'invalid'}
+              className = {input.valid ? 'valid' : 'invalid'}
               required  = {true}
               defaultValue = {age}
               /*onChange  = {(ev) => setAge(ev.target.value)}*//>

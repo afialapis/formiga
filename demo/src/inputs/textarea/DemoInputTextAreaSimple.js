@@ -5,7 +5,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 const DemoInputTextAreaSimple = () => {
   const [story, setStory]= useState('It started a warm Friday\'s night. I was bored...')
 
-  const [inputRef, {valid, message}] = useInput({
+  const input = useInput({
     type: 'textarea'
   })
 
@@ -17,11 +17,11 @@ const DemoInputTextAreaSimple = () => {
     <DemoInputGroup 
       label       = {"Tell us more about your love story with Formiga"}
       description = {`Not required. Min length 50 (currently ${story.length}).`}
-      message     = {message}>
+      message     = {input.message}>
       <textarea 
-            ref       = {inputRef}
+            ref       = {input.ref}
             name      = {'story'}
-            className = {valid ? 'valid' : 'invalid'}
+            className = {input.valid ? 'valid' : 'invalid'}
             value     = {story}
             minLength = {50}
             onChange  = {(ev) => handleStoryChange(ev.target.value)}/>

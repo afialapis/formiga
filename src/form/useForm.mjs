@@ -2,9 +2,6 @@ import {useState, useEffect, useCallback} from 'react'
 import attachFormValidationListener from './attachFormValidationListener.mjs'
 import {log} from '../helpers/log.mjs'
 
-
-// let hash= elements.map(e => JSON.stringify(e)).join(',')
-
 const _getFormElements = (node) => {
   const formElements= node?.elements
   if (! formElements) {
@@ -35,10 +32,6 @@ const _getFormElements = (node) => {
   return elements
 }
 
-const _compareElements = (el1, el2) => {
-  return JSON.stringify(el1) == JSON.stringify(el2)
-}
-
 const _areAllValid = (elements) => {
   for (const e of elements) {
     if (!e.valid) {
@@ -52,6 +45,7 @@ const useForm = () => {
 
   const [formNode, setFormNode]= useState(undefined)
   const [elements, setElements] = useState([])
+  const [valid, setValid] = useState(true)
 
   const formRef = useCallback(node => {
     log('form', `formRef callback`)
@@ -78,6 +72,7 @@ const useForm = () => {
 
     let nElements = _getFormElements(node)
     setElements(nElements)
+    setValid(_areAllValid(nElements))
 
   }, [])
   
@@ -98,9 +93,14 @@ const useForm = () => {
 
 
 
-  log('form', `Render, valid is ${_areAllValid(elements)}`)
+  log('form', `Render, valid is ${valid}`)
   
-  return [formRef, _areAllValid(elements), elements]
+  return {
+    ref: formRef,
+    node: formNode,
+    valid,
+    elements
+  }
 }
 
 export default useForm

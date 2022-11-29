@@ -13,7 +13,7 @@ const LIST_OPTIONS= [
 const DemoInputSelectSimple = () => {
   const [experience, setExperience]= useState(undefined /*'1'*/)
 
-  const [inputRef, {valid, message}] = useInput({
+  const input = useInput({
     type: 'select',
     disallowedValues: ['3', '4']
   })
@@ -22,11 +22,11 @@ const DemoInputSelectSimple = () => {
     <DemoInputGroup 
       label       = {"What do you think about Formiga?"}
       description = ""
-      message     = {message}>
+      message     = {input.message}>
 
-      <select ref          = {inputRef}
+      <select ref          = {input.ref}
               name         = {'experience'}
-              className    = {valid ? 'valid' : 'invalid'}
+              className    = {input.valid ? 'valid' : 'invalid'}
               required     = {true}
               value        = {experience}
               onChange     = {(ev) => setExperience(ev.target.value)}>

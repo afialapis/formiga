@@ -12,7 +12,7 @@ const getToday = (add= 0) => {
 
 const DemoInputDateSimple = () => {
 
-  const [inputRef, {valid, message}] = useInput({
+  const input = useInput({
     type: 'text',
     disallowedValues: [getToday()]
   })
@@ -27,11 +27,11 @@ const DemoInputDateSimple = () => {
     <DemoInputGroup 
       label       = {"When will you take your next Formiga?"}
       description = "Why would you wait till tomorrow"
-      message     = {message}>
-      <input ref          = {inputRef}
+      message     = {input.message}>
+      <input ref          = {input.ref}
              type         = "date"
              name         = {'when'}
-             className    = {valid ? 'valid' : 'invalid'}
+             className    = {input.valid ? 'valid' : 'invalid'}
              value        = {when}
              onChange     = {(ev) => handleWhenChange(ev.target.value)}/>
     </DemoInputGroup>

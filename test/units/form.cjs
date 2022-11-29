@@ -10,11 +10,11 @@ describe('Forms', function () {
 
     const fid= 'formiga_empty_form'
     const App = () => {
-      const [formRef, _valid, _readElements] = useForm()
+      const form = useForm()
 
       return (
         <div>
-          <form ref = {formRef}
+          <form ref = {form.ref}
                 id  = {fid}
                 className= 'formiga-form'>
             <div/>

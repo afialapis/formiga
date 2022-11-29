@@ -9,7 +9,7 @@ describe('Buttons', function () {
     
     const {useForm} = global.formiga
     const App = () => {
-      const [formRef, _valid, _readElements] = useForm()
+      const form = useForm()
 
       // const renderButtons= (_valid, _elements) => {
       //   return (
@@ -22,7 +22,7 @@ describe('Buttons', function () {
 
       return (
         <div>
-          <form ref = {formRef}>
+          <form ref = {form.ref}>
             <button id="test-btn-cancel">Cancel</button>
             <button id="test-btn-save">Save</button>
           </form>

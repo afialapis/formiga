@@ -27,11 +27,11 @@ const _getResumeFromFormElements = (elements) => {
 
 const Demo = () => {
   const [resume, setResume]= useState([])
-  const [formRef, valid, elements] = useForm()
+  const form = useForm()
   
   const updateResume = useCallback(() => {
-    setResume(_getResumeFromFormElements(elements))
-  }, [elements])
+    setResume(_getResumeFromFormElements(form.elements))
+  }, [form.elements])
 
   useEffect (() => {
     updateResume()
@@ -45,7 +45,7 @@ const Demo = () => {
     <div className="formiga-container">
       <div className="formiga-form">
         <h1>{"Formiga's demo"}</h1>
-        <form ref = {formRef}>
+        <form ref = {form.ref}>
           <div className="formiga-form-inputs">
             <div className="formiga-form-inputs-left">
               <DemoInputText/>
@@ -64,9 +64,9 @@ const Demo = () => {
           </div>
             
           <div className="formiga-form-buttons">
-            <a className={`btn btn-primary ${valid ? '' : 'disabled'}`}
+            <a className={`btn btn-primary ${form.valid ? '' : 'disabled'}`}
                onClick={(_ev) => updateResume()}>
-                {valid ? 'Submit' : 'Check wrong values before sumitting'}
+                {form.valid ? 'Submit' : 'Check wrong values before sumitting'}
             </a>
           </div>                 
         </form>

@@ -4,7 +4,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputFileSimple = () => {
 
-  const [inputRef, {valid, message}] = useInput({
+  const input = useInput({
     type: 'file'
   })
 
@@ -13,11 +13,11 @@ const DemoInputFileSimple = () => {
     <DemoInputGroup 
       label       = {"Upload a copy of your ID Card, authorities must know you"}
       description = ""
-      message     = {message}>
-      <input ref       = {inputRef}
+      message     = {input.message}>
+      <input ref       = {input.ref}
              type      = "file"
              name      = {'id_card'}
-             className = {valid ? 'valid' : 'invalid'}
+             className = {input.valid ? 'valid' : 'invalid'}
              required  = {true}
              />
     </DemoInputGroup>       

@@ -7,20 +7,18 @@ import makeInputFilter from './makeInputFilter.mjs'
 // But lets start simple and easy. 
 const INPUT_FILTER_EVENT_TYPES= ['input', 'keydown', 'mousedown']
 
-const useInputFilter = (inputNode, inputFilter ) => {
+const useInputFilter = (inputRef, inputFilter ) => {
 
   useEffect(() => {
     if (inputFilter==undefined) {
       return
     }
 
-    if (inputNode==undefined) {
+    if (inputRef?.current==undefined) {
       return
     }
 
-    const innerInputNode= inputNode?.current || inputNode
-
-    if (innerInputNode.type.toLowerCase() != 'text') {
+    if (inputRef.current.type.toLowerCase() != 'text') {
       return
     }
 
@@ -32,10 +30,10 @@ const useInputFilter = (inputNode, inputFilter ) => {
     // https://jsfiddle.net/emkey08/zgvtjc51
 
     
-    const theInputFilter= makeInputFilter(inputFilter, innerInputNode.name)
+    const theInputFilter= makeInputFilter(inputFilter, inputRef.current.name)
 
     // init auxiliar properties
-    innerInputNode.oldValue = innerInputNode.value
+    inputRef.current.oldValue = inputRef.current.value
 
     const filterEventListener = function(event) {
       if (theInputFilter(event.target.value)) {
@@ -54,22 +52,22 @@ const useInputFilter = (inputNode, inputFilter ) => {
     }
 
     INPUT_FILTER_EVENT_TYPES.forEach(function(eventType) {
-      innerInputNode.addEventListener(eventType, filterEventListener)
+      inputRef.current.addEventListener(eventType, filterEventListener)
       allListeners[eventType]= filterEventListener
     })
 
     // clean listeners function
     const removeAllChangeListeners = () => {
-      if (innerInputNode!=undefined) {
+      if (inputRef.current!=undefined) {
         Object.keys(allListeners).map((eventType) => {
-          innerInputNode.removeEventListener(eventType, allListeners[eventType])
+          inputRef.current.removeEventListener(eventType, allListeners[eventType])
         })
       }
     }   
       
     // return clean function
     return removeAllChangeListeners
-  }, [inputNode, inputFilter])
+  }, [inputRef, inputFilter])
 }
 
 export default useInputFilter

@@ -4,7 +4,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputCheckBoxSimple = () => {
 
-  const [inputRef, {valid, message}] = useInput({
+  const input = useInput({
     type: 'checkbox',
     disallowedValues: [true]
   })
@@ -19,11 +19,11 @@ const DemoInputCheckBoxSimple = () => {
     <DemoInputGroup 
       label       = {"Did you notice side effects?"}
       description = ""
-      message     = {message}>
-      <input ref       = {inputRef}
+      message     = {input.message}>
+      <input ref       = {input.ref}
              type      = "checkbox"
              name      = {'effects'}
-             className = {valid ? 'valid' : 'invalid'}
+             className = {input.valid ? 'valid' : 'invalid'}
              value     = {effects}
              onChange  = {(ev) => handleEffectsChange(ev.target.checked)}>
       </input>                

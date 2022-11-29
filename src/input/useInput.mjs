@@ -1,4 +1,4 @@
-import {useEffect, useState, useCallback, useRef} from 'react'
+import {useEffect, useState, useCallback} from 'react'
 import {log_input} from '../helpers/log.mjs'
 import useCheckProps from './checkers/useCheckProps.mjs'
 import useInputFilter from './inputFilter/useInputFilter.mjs'
@@ -15,92 +15,100 @@ const useInput = (props) => {
         allowedValues, disallowedValues, 
         doRepeat, doNotRepeat, decimals, 
         inputFilter, feedback}= props
-  
-  const inputRef = useRef()
-  
+    
   const [firstValidated, setFirstValidated]= useState(false)
-  //const [inputNode, setInputNode]= useState(undefined)
+  const [inputNode, setInputNode]= useState(undefined)
   const [validity, validateInput, setCustomValidity]  = useInputValidity(transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback)
   
   //
   // Specific effect to check props consistency. Just DEV time
   //
-  useCheckProps(/*inputNode*/ inputRef?.current, doRepeat, doNotRepeat, inputFilter)
+  useCheckProps(inputNode, doRepeat, doNotRepeat, inputFilter)
 
   //
   // Attaches input filters when needed
   //
-  useInputFilter(/*inputNode*/ inputRef?.current, inputFilter)
+  useInputFilter(inputNode, inputFilter)
 
   //
   // Ensures checkboxes value
   //
-  useCheckboxEnsure(/*inputNode*/ inputRef?.current)
+  useCheckboxEnsure(inputNode)
 
-  //  const inputRef = useCallback(node => {
-  //    if (node!=null) {
-  //      log_input(node, 'inputRef callback')
   //
-  //      setInputNode(node)
-  //    }
-  //  }, [])  
+  // input Ref as callback
+  //  
+  const inputRef = useCallback(node => {
+    if (node!=null) {
+      log_input(node, 'inputRef callback')
+  
+      setInputNode(node)
+    }
+  }, [])  
 
+  //
+  // on mount, validate input and attach handlers
+  //   
   useEffect(() => {
-    if (/*inputNode*/ inputRef?.current!=undefined) {
+    if (inputNode!=undefined) {
       if (!firstValidated) {
         setFirstValidated(true)
-        validateInput(/*inputNode*/ inputRef.current)
+        validateInput(inputNode)
       }
 
-      const removeAllChangeListeners = attachInputValidationListener(/*inputNode*/ inputRef.current, validateInput)
+      const removeAllChangeListeners = attachInputValidationListener(inputNode, validateInput)
       return removeAllChangeListeners
 
     }
-  }, [/*inputNode*/ firstValidated, validateInput])
+  }, [inputNode, firstValidated, validateInput])
 
-  if (/*inputNode*/ inputRef?.current!=undefined) {
-    log_input(/*inputNode*/ inputRef.current, 'render')
+  if (inputNode!=undefined) {
+    log_input(inputNode, 'render')
   }
 
+  //
+  // several callbacks to return 
+  //    
   const validate = useCallback(() => {
-    if (/*inputNode*/ inputRef?.current!=undefined) {
-      validateInput(/*inputNode*/ inputRef?.current)
+    if (inputNode!=undefined) {
+      validateInput(inputNode)
     }
-  }, [/*inputNode*/ validateInput])
+  }, [inputNode, validateInput])
 
   const setValue = useCallback((v) => {
-    if (/*inputNode*/ inputRef?.current!=undefined) {
-      /*inputNode*/ inputRef.current.value = v
+    if (inputNode!=undefined) {
+      inputNode.value = v
     }
-  }, [/*inputNode*/])
+  }, [inputNode])
 
   const setValidity = useCallback((msg) => {
-    if (/*inputNode*/ inputRef?.current!=undefined) {
-      setCustomValidity(/*inputNode*/ inputRef.current, msg)
+    if (inputNode!=undefined) {
+      setCustomValidity(inputNode, msg)
     }
-  }, [/*inputNode*/ setCustomValidity])
+  }, [inputNode, setCustomValidity])
   
   const dipatchEvent = useCallback((type, data, bubbles= false) => {
-    if (inputRef?.current==undefined) {
+    if (inputNode==undefined) {
       return
     }
     const inputEvent = new CustomEvent(type, {
       bubbles,
       detail: data || {}
     })
-    inputRef.current.dispatchEvent(inputEvent)
+    inputNode.dispatchEvent(inputEvent)
 
-  }, [])
+  }, [inputNode])
   
-  return [inputRef, {
+  return {
+    ref: inputRef,
+    node: inputNode,
     valid: validity==='', 
     message: validity, 
-    //inputNode,
     validate,
     setValue,
     setValidity,
     dipatchEvent
-  }]
+  }
 }
 
 

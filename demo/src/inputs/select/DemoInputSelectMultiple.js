@@ -18,7 +18,7 @@ const DemoInputSelectMultiple = () => {
 
   const [times, setTimes]= useState(['3', '5', '7'])
 
-  const [inputRef, {valid, message}] = useInput({
+  const input = useInput({
     type: 'select-multiple',
     disallowedValues: [['1', '3', '5', '7']]
   })
@@ -35,11 +35,11 @@ const DemoInputSelectMultiple = () => {
     <DemoInputGroup 
       label       = {"What times you prefer to take a Formiga?"}
       description = "All even hours required"
-      message     = {message}>
+      message     = {input.message}>
 
-      <select ref          = {inputRef}
+      <select ref          = {input.ref}
               name         = {'times'}
-              className    = {valid ? 'valid' : 'invalid'}
+              className    = {input.valid ? 'valid' : 'invalid'}
               multiple
               value        = {times}
               onChange     = {(ev) => handleTimesChange(ev)}>

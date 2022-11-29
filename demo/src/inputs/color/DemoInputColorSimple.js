@@ -4,7 +4,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputColorSimple = () => {
 
-  const [inputRef, {valid, message}] = useInput({
+  const input = useInput({
     type: 'color',
     disallowedValues: ['#000000', '#FFFFFF', '#ffffff'],
     feedback: 'Neither black nor white'
@@ -20,11 +20,11 @@ const DemoInputColorSimple = () => {
     <DemoInputGroup 
       label       = {"What color has your world now?"}
       description = "Neither black nor white!"
-      message     = {message}>
-      <input ref         = {inputRef}
+      message     = {input.message}>
+      <input ref         = {input.ref}
               type        = "color"
               name        = {'color'}
-              className   = {valid ? 'valid' : 'invalid'}
+              className   = {input.valid ? 'valid' : 'invalid'}
               value       = {color}
               onChange    = {(ev) => handleColorChange(ev.target.value)}>
       </input>

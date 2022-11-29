@@ -5,7 +5,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 const DemoInputTextWords = () => {
   const [words, setWords]= useState('another dimension man!')
 
-  const [wordsRef, {valid, message}] = useInput({
+  const input = useInput({
     type: 'text'
   })
 
@@ -13,10 +13,10 @@ const DemoInputTextWords = () => {
     <DemoInputGroup
       label       = {"Your experience with Formiga in two words"}
       description = {`Controlled. Not required. Max length 20 (currently ${words ? words.length : 0})`}
-      message     = {message}>
-      <input ref          = {wordsRef}
+      message     = {input.message}>
+      <input ref          = {input.ref}
               name         = {'why'}
-              className    = {valid ? 'valid' : 'invalid'}
+              className    = {input.valid ? 'valid' : 'invalid'}
               maxLength    = {20}
               value        = {words}
               onChange     = {(ev) => setWords(ev.target.value)}/>
