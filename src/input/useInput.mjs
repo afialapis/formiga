@@ -14,7 +14,7 @@ const useInput = (props) => {
   const {transformValue, checkValue, 
         allowedValues, disallowedValues, 
         doRepeat, doNotRepeat, decimals, 
-        inputFilter, feedback}= props
+        inputFilter, feedback}= props || {}
     
   const [firstValidated, setFirstValidated]= useState(false)
   const [inputNode, setInputNode]= useState(undefined)
