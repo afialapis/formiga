@@ -14,11 +14,19 @@ const useInputFilter = (inputRef, inputFilter ) => {
       return
     }
 
-    if (inputRef?.current==undefined) {
+    if (inputRef == undefined) {
       return
     }
 
-    if (inputRef.current.type.toLowerCase() != 'text') {
+    const innerRef = inputRef?.current || inputRef
+
+
+    if (innerRef==undefined) {
+      return
+    }
+
+
+    if (innerRef.type.toLowerCase() != 'text') {
       return
     }
 
@@ -30,10 +38,10 @@ const useInputFilter = (inputRef, inputFilter ) => {
     // https://jsfiddle.net/emkey08/zgvtjc51
 
     
-    const theInputFilter= makeInputFilter(inputFilter, inputRef.current.name)
+    const theInputFilter= makeInputFilter(inputFilter, innerRef.name)
 
     // init auxiliar properties
-    inputRef.current.oldValue = inputRef.current.value
+    innerRef.oldValue = innerRef.value
 
     const filterEventListener = function(event) {
       if (theInputFilter(event.target.value)) {
@@ -52,15 +60,15 @@ const useInputFilter = (inputRef, inputFilter ) => {
     }
 
     INPUT_FILTER_EVENT_TYPES.forEach(function(eventType) {
-      inputRef.current.addEventListener(eventType, filterEventListener)
+      innerRef.addEventListener(eventType, filterEventListener)
       allListeners[eventType]= filterEventListener
     })
 
     // clean listeners function
     const removeAllChangeListeners = () => {
-      if (inputRef.current!=undefined) {
+      if (innerRef!=undefined) {
         Object.keys(allListeners).map((eventType) => {
-          inputRef.current.removeEventListener(eventType, allListeners[eventType])
+          innerRef.removeEventListener(eventType, allListeners[eventType])
         })
       }
     }   
