@@ -1,8 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react'
 import {useForm} from '../../src'
-
-
-
 import DemoInputCheckbox from './inputs/checkbox/DemoInputCheckbox'
 import DemoInputColor from './inputs/color/DemoInputColor'
 import DemoInputDate from './inputs/date/DemoInputDate'
@@ -37,14 +34,15 @@ const Demo = () => {
     updateResume()
   }, [updateResume])
 
-
-  console.log('DEMO render....')
-
   return (  
-
+    <>
+    <div className="formiga-title">
+      {"Formiga demo"}
+    </div>
     <div className="formiga-container">
+
       <div className="formiga-form">
-        <h1>{"Formiga's demo"}</h1>
+        <h1>Type your info here</h1>
         <form ref = {form.ref}>
           <div className="formiga-form-inputs">
             <div className="formiga-form-inputs-left">
@@ -86,7 +84,7 @@ const Demo = () => {
         </div>
       </div>
     </div>
-
+    </>
   )
 }
 

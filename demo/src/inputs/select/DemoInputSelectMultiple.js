@@ -33,7 +33,7 @@ const DemoInputSelectMultiple = () => {
 
   return (
     <DemoInputGroup 
-      label       = {"What times you prefer to take a Formiga?"}
+      label       = {"What times you prefer to code with Formiga?"}
       description = "All even hours required"
       feedback    = {input.feedback}>
 

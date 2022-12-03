@@ -3,29 +3,30 @@ import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputCheckBoxSimple = () => {
-
+  const [like, setLike]= useState(false)
   const input = useInput({
     type: 'checkbox',
-    disallowedValues: [true]
+    disallowedValues: [0, false],
+    chackValue: (v) => v===true
   })
 
-  const [effects, setEffects]= useState(false)
+  
 
-  const handleEffectsChange = (nEffects) => {
-    setEffects(Boolean(nEffects))
+  const handleLikeChange = (nLike) => {
+    setLike(nLike)
   }
 
   return (
     <DemoInputGroup 
-      label       = {"Did you notice side effects?"}
-      description = ""
+      label       = {"Do you like Formiga?"}
+      description = "You can be honest ;)"
       feedback    = {input.feedback}>
       <input ref       = {input.ref}
              type      = "checkbox"
-             name      = {'effects'}
+             name      = {'like'}
              className = {input.valid ? 'valid' : 'invalid'}
-             value     = {effects}
-             onChange  = {(ev) => handleEffectsChange(ev.target.checked)}>
+             value     = {like}
+             onChange  = {(ev) => handleLikeChange(ev.target.checked)}>
       </input>                
     </DemoInputGroup>
   )

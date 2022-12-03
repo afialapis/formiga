@@ -14,10 +14,10 @@ const DemoInputDateSimple = () => {
 
   const input = useInput({
     type: 'text',
-    disallowedValues: [getToday()]
+    disallowedValues: [getToday(-1)]
   })
 
-  const [when, setWhen]= useState(getToday(1))
+  const [when, setWhen]= useState(getToday(-1))
   
   const handleWhenChange = (nWhen) => {
     setWhen(nWhen)
@@ -25,8 +25,8 @@ const DemoInputDateSimple = () => {
 
   return (
     <DemoInputGroup 
-      label       = {"When will you take your next Formiga?"}
-      description = "Why would you wait till tomorrow"
+      label       = {"When did you last see Formiga?"}
+      description = "I think you saw it today"
       feedback    = {input.feedback}>
       <input ref          = {input.ref}
              type         = "date"

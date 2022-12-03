@@ -11,7 +11,7 @@ const DemoInputFileSimple = () => {
 
   return (
     <DemoInputGroup 
-      label       = {"Upload a copy of your ID Card, authorities must know you"}
+      label       = {"Put some file here; Formiga's strength will upload it"}
       description = ""
       feedback    = {input.feedback}>
       <input ref       = {input.ref}

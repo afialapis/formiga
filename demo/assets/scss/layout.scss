@@ -4,6 +4,16 @@
 
 
 body {
+  .formiga-title {
+    text-align: center;
+    color: $brand-black;
+    font-family: $font-primary;
+    font-weight: 200;    
+    background-image: url('assets/img/formiga.png');
+    background-repeat: no-repeat;
+    background-size: 15px;    
+  }
+
   .formiga-container {
     display: flex;
 
@@ -21,13 +31,16 @@ body {
           padding: 0 2em;
         }
 
-        .formiga-form-input-type-section {
-          margin-top: 2em;
-  
+        .formiga-form-input-type-section { 
           h2 {
             border-bottom: 1px solid gray;
           }
-        }        
+        }    
+        
+        .formiga-form-input-type-section:not(:first-child) {
+          margin-top: 2em;
+  
+        }
       }
 
 

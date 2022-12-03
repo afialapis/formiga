@@ -4,32 +4,32 @@ import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputNumberInt = () => {
 
-  const [pills, setPills]= useState(2)
+  const [paws, setPaws]= useState(2)
 
   const input = useInput({
     decimals: 1,
-    checkValue: (v) => v>=6,
-    feedback: 'Hey folk, give yourself a bit of fun!'
+    checkValue: (v) => v==6,
+    feedback: 'Hey folk, look closer to our precious icon!'
   })
 
 
-  const handlePillsChange = (nPills) => {
-    setPills(nPills)
+  const handlePawsChange = (nPaws) => {
+    setPaws(nPaws)
   }
 
 
   return (
     <DemoInputGroup 
-      label       = {"How many pills per dose would you like?"}
-      description = {"Some >=6 integer. Decimals allowed but invalid (decimals=1)."}
+      label       = {"How many paws does Formiga have?"}
+      description = {"An =6 integer. Decimals allowed but invalid (decimals=1)."}
       feedback    = {input.feedback}>
       <input  ref       = {input.ref}
               type      = "number"
-              name      = {'pills'}
+              name      = {'paws'}
               className = {input.valid ? 'valid' : 'invalid'}
-              value     = {pills}
+              value     = {paws}
               required  = {false}
-              onChange  = {(ev) => handlePillsChange(ev.target.value)}>
+              onChange  = {(ev) => handlePawsChange(ev.target.value)}>
       </input>                
     </DemoInputGroup>
   )

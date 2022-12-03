@@ -3,7 +3,7 @@ import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputTextWords = () => {
-  const [words, setWords]= useState('another dimension man!')
+  const [words, setWords]= useState("That's indeed ANT real thing!")
 
   const input = useInput({
     type: 'text'

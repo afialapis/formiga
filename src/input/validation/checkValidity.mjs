@@ -24,16 +24,23 @@ const  checkValidity = (input, transformValue, checkValue, allowedValues, disall
     return ''
   }
 
+  const name= input.name
+  const inputType= input.type.toLowerCase()  
+
   // Get input value
   let value = getInputValue(input)
   if (transformValue!=undefined) {
     value= transformValue(value)
   }  
 
-  //log('input', `${input.name} (${input.type}) #${input.id} checkValidity() checking...`)
+  let isEmptyValue= 
+    value==undefined
+    ? true
+    : typeof value == 'string'
+      ? value == ''
+      : false
 
-  const name= input.name
-  const inputType= input.type.toLowerCase()
+  //log('input', `${input.name} (${input.type}) #${input.id} checkValidity() checking...`)
   
   const vs= input.validity
   if (vs!=undefined) {
@@ -87,7 +94,7 @@ const  checkValidity = (input, transformValue, checkValue, allowedValues, disall
 
   // Some inputs like hidden and select, wont perform 
   // the standard required validation
-  if (input.required && (value=='' || value==undefined)) {
+  if (input.required && isEmptyValue) {
     return 'valueMissing'
   }  
 
@@ -108,7 +115,7 @@ const  checkValidity = (input, transformValue, checkValue, allowedValues, disall
   }
 
   // Allowed values list
-  if ( (allowedValues != undefined) && (value!=undefined) && (value!='')) {
+  if ( (allowedValues != undefined) && (!isEmptyValue)) {
     const exists= allowedValues
       .map((v) => parseForCompare(inputType, v))
       .indexOf(parseForCompare(inputType, value)) >= 0
@@ -118,7 +125,7 @@ const  checkValidity = (input, transformValue, checkValue, allowedValues, disall
   }
 
   // Disallowed values list
-  if ( (disallowedValues != undefined) && (value!=undefined) && (value!='')) {
+  if ( (disallowedValues != undefined) && (!isEmptyValue)) {
     const exists= disallowedValues
       .map((v) => parseForCompare(inputType, v))
       .indexOf(parseForCompare(inputType, value)) >= 0
@@ -128,7 +135,7 @@ const  checkValidity = (input, transformValue, checkValue, allowedValues, disall
   }
 
   // Must repeat other's input value
-  if (doRepeat!=undefined && value!=undefined  && value!='') {
+  if (doRepeat!=undefined && (!isEmptyValue)) {
     const otherInput= input.form.elements[doRepeat]
     if (otherInput!=undefined) {
       if(otherInput.value != value) {
@@ -142,7 +149,7 @@ const  checkValidity = (input, transformValue, checkValue, allowedValues, disall
   }
 
   // Do not repeat other's input value
-  if (doNotRepeat!=undefined && value!=undefined  && value!='') {
+  if (doNotRepeat!=undefined && (!isEmptyValue)) {
     const otherInput= input.form.elements[doNotRepeat]
     if (otherInput!=undefined) {
       if(otherInput.value == value) {

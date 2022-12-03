@@ -4,7 +4,7 @@ import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputNumberFloat = () => {
 
-  const [weight, setWeight]= useState(105.876)
+  const [weight, setWeight]= useState(1.876)
 
   const input = useInput({
     decimals: 3
@@ -17,7 +17,7 @@ const DemoInputNumberFloat = () => {
   return (
 
     <DemoInputGroup 
-      label       = {"Hmm... sounds like too much pills. How much do you weight?"}
+      label       = {"How much Formiga weights (in milligrams)?"}
       description = {"Some float (max 3 decimals, decimals = 3)."}
       feedback    = {input.feedback}>
       

@@ -18,7 +18,7 @@ const DemoInputColorSimple = () => {
 
   return (
     <DemoInputGroup 
-      label       = {"What color has your world now?"}
+      label       = {"What color reminds you Formiga to?"}
       description = "Neither black nor white!"
       feedback    = {input.feedback}>
       <input ref         = {input.ref}

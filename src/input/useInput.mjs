@@ -87,15 +87,15 @@ const useInput = (props) => {
     }
   }, [inputNode, setCustomValidity])
   
-  const dipatchEvent = useCallback((type, props) => {
+  const dispatchEvent = useCallback((type, props) => {
     if (inputNode==undefined) {
       return
     }
-    const inputEvent = new CustomEvent(type, {
+    const inputEvent = new Event(type, {
       bubbles: props?.bubbles || true,
       cancelable: props?.cancelable || true,
       view: props?.view || window,
-      detail: props?.data || {}
+      detail: props?.detail || props?.data || {}
     })
     inputNode.dispatchEvent(inputEvent)
 
@@ -109,7 +109,7 @@ const useInput = (props) => {
     validate,
     setValue,
     setValidity,
-    dipatchEvent
+    dispatchEvent
   }
 }
 

@@ -4,13 +4,13 @@ import {DemoInputGroup} from '../DemoInputGroup'
 
 const DemoInputNumberFloatStep = () => {
 
-  const [size, setSize]= useState(1.44)
+  const [size, setSize]= useState(46.44)
   const input = useInput({})  
 
   return (
 
     <DemoInputGroup 
-      label       = {"Still not sure... Your size?"}
+      label       = {"And how much weight does Farmiga can carry (in grams)?"}
       description = {"Some float (max 2 decimals, native step = 0.01)."}
       feedback    = {input.feedback}>
       

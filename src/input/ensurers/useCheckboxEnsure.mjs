@@ -9,12 +9,11 @@ const useCheckboxEnsure = (inputNode) => {
     }
 
     const inputType= inputNode.type.toLowerCase()
-  
+
     // Ensure checkbox checked prop
     if (inputType === 'checkbox') {
 
       log_input(inputNode, 'input', `useCheckboxEnsure() ensuring value`)
-
       if (inputNode.value==='true' || inputNode.value===true) {
         inputNode.setAttribute('checked', true)
       }         
