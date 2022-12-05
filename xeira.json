@@ -1,6 +1,6 @@
 {
   "product": "package",
-  "target": "browser",
+  "target": "both",
   "source_index": "./src/index.mjs",
   "react": true,
   "monorepo": false,

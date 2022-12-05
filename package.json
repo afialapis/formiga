@@ -1,6 +1,6 @@
 {
   "name": "formiga",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "The simplest -yet effective- form validator for React",
   "keywords": [
     "js",
@@ -29,13 +29,13 @@
     "formiga.png"
   ],
   "type": "module",
-  "main": "./lib/index.mjs",
+  "main": "./lib/index.cjs",
   "cjs": "./dist/formiga.cjs",
   "browser": "./dist/formiga.umd.js",
   "module": "./dist/formiga.mjs",
   "exports": {
     "import": "./dist/formiga.mjs",
-    "default": "./lib/index.mjs",
+    "default": "./lib/index.cjs",
     "require": "./dist/formiga.cjs"
   },
   "scripts": {
@@ -51,7 +51,7 @@
     "reset": "npm run --silent clean-demo && npm run --silent clean-lib && npm run --silent clean-dist && rm -fr node_modules package-lock.json && npm i"
   },
   "devDependencies": {
-    "xeira": "^0.0.23"
+    "xeira": "^0.0.26"
   },
   "dependencies": {
     "react": ">=16.13.1"
