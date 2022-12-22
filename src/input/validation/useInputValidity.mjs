@@ -1,17 +1,13 @@
 import {useState, useCallback} from 'react'
-
 import checkValidity from './checkValidity.mjs'
 import getDefaultMessage from '../config/getDefaultMessage.mjs'
-import useSetCustomValidity from '../events/useSetCustomValidity.mjs'
+import setCustomValidity from '../events/setCustomValidity.mjs'
 
 
-const useGetInputVailidity = (transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback) => {
+const useInputValidity = (transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback) => {
   const [validity, setValidity]= useState('')
-  const setCustomValidity = useSetCustomValidity(transformValue)
-
 
   const validateInput = useCallback((node) => {
-
     // Check validity
     const chkValidity= checkValidity(node, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals)
     
@@ -22,12 +18,17 @@ const useGetInputVailidity = (transformValue, checkValue, allowedValues, disallo
                   : getDefaultMessage(chkValidity)
     
     setValidity(nValidity)
-    setCustomValidity(node, nValidity)
+    setCustomValidity(node, nValidity, transformValue)
 
     return nValidity
-  }, [setCustomValidity, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback])
+  }, [transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback])
 
-  return [validity, validateInput, setCustomValidity]
+  const handleSetValidity = useCallback((node, nValidity) => {
+    setValidity(nValidity)
+    setCustomValidity(node, nValidity, transformValue)
+  }, [transformValue])
+
+  return [validity, validateInput, handleSetValidity]
 }
 
-export default useGetInputVailidity
+export default useInputValidity

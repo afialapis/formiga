@@ -47,6 +47,13 @@ const useForm = () => {
   const [elements, setElements] = useState([])
   const [valid, setValid] = useState(true)
 
+  const updateForm = useCallback((node) => {
+    log('form', `updateForm callback (${node?.elements?.length} inputs)`)
+    let nElements = _getFormElements(node)
+    setElements(nElements)
+    setValid(_areAllValid(nElements))
+  }, [])
+
   const formRef = useCallback(node => {
     log('form', `formRef callback`)
 
@@ -63,37 +70,28 @@ const useForm = () => {
         console.error(e)
       }
       
+      
+      updateForm(node)
       setFormNode(node)
     }
-  }, [])
+  }, [updateForm])
 
-  const updateForm = useCallback((node) => {
-    log('form', `updateForm callback (${node?.elements?.length} inputs)`)
 
-    let nElements = _getFormElements(node)
-    setElements(nElements)
-    setValid(_areAllValid(nElements))
-
-  }, [])
-  
   useEffect(() => {
     log('form', `useEffect - ${formNode==undefined}`)
-
+  
     if (formNode==undefined) {
       return
     }
 
-    updateForm(formNode)
-
     const removeAllChangeListeners = attachFormValidationListener(formNode, updateForm)
     return removeAllChangeListeners  
-
-
+  
   }, [formNode, updateForm])
 
 
 
-  log('form', `Render, valid is ${valid}`)
+  log('form', `Render, node is ${formNode==undefined ? 'pending' : 'assigned'}, valid is ${valid}`)
   
   return {
     ref: formRef,

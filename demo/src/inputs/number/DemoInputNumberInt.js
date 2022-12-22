@@ -1,14 +1,15 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
+import { useResetableValue } from '../reset'
 
 const DemoInputNumberInt = () => {
 
-  const [paws, setPaws]= useState(2)
+  const [paws, setPaws]= useResetableValue(2, undefined)
 
   const input = useInput({
     decimals: 1,
-    checkValue: (v) => v==6,
+    checkValue: (v) => (v==6) || isNaN(v),
     feedback: 'Hey folk, look closer to our precious icon!'
   })
 
@@ -21,7 +22,7 @@ const DemoInputNumberInt = () => {
   return (
     <DemoInputGroup 
       label       = {"How many paws does Formiga have?"}
-      description = {"An =6 integer. Decimals allowed but invalid (decimals=1)."}
+      description = {"Optional. An =6 integer. Decimals allowed but invalid (decimals=1)."}
       feedback    = {input.feedback}>
       <input  ref       = {input.ref}
               type      = "number"

@@ -1,13 +1,14 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
+import { useResetableValue } from '../reset'
 
 const DemoInputNumberFloat = () => {
 
-  const [weight, setWeight]= useState(1.876)
+  const [weight, setWeight]= useResetableValue(1.876, '')
 
   const input = useInput({
-    decimals: 3
+    //decimals: 3
   })
   
   const handleWeightChange = (nWeight) => {

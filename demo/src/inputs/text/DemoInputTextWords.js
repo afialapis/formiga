@@ -1,13 +1,17 @@
-import React, {useState} from 'react'
+import React  from 'react'
 import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
+import { useResetableValue /*, useResetableDefValue*/ } from '../reset'
 
 const DemoInputTextWords = () => {
-  const [words, setWords]= useState("That's indeed ANT real thing!")
+  
 
   const input = useInput({
     type: 'text'
   })
+
+  const [words, setWords]= useResetableValue("That's indeed ANT real thing!")
+  //const words= useResetableDefValue("That's indeed ANT real thing!", input)
 
   return (
     <DemoInputGroup
@@ -15,11 +19,13 @@ const DemoInputTextWords = () => {
       description = {`Controlled. Not required. Max length 20 (currently ${words ? words.length : 0})`}
       feedback    = {input.feedback}>
       <input ref          = {input.ref}
-              name         = {'why'}
+              name         = {'words'}
               className    = {input.valid ? 'valid' : 'invalid'}
               maxLength    = {20}
               value        = {words}
-              onChange     = {(ev) => setWords(ev.target.value)}/>
+              onChange     = {(ev) => setWords(ev.target.value)}
+              /*defaultValue = {words}*/
+              />
     </DemoInputGroup>
 
   )

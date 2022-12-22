@@ -2,6 +2,10 @@
 
 const getInputValue = (input) => {
 
+  if (!input) {
+    return undefined
+  }
+
   const inputType= input.type.toLowerCase()
 
   if (inputType=='checkbox') {

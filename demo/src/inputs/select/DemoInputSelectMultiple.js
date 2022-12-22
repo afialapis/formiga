@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
+import { useResetableValue } from '../reset'
 
 const LISTM_OPTIONS= {
   '1': "08:00",
@@ -16,20 +17,22 @@ const LISTM_OPTIONS= {
 
 const DemoInputSelectMultiple = () => {
 
-  const [times, setTimes]= useState(['3', '5', '7'])
+  const [times, setTimes]= useResetableValue(['3', '5', '7'], [])
 
   const input = useInput({
-    type: 'select-multiple',
-    disallowedValues: [['1', '3', '5', '7']]
+    disallowedValues: [['1', '3', '5', '7'], [], '', undefined]
   })
 
   const handleTimesChange = (ev) => {
+    console.log(`handleTimesChange: ${JSON.stringify(ev.target.options)}`)
     const nTimes= Array.prototype.slice.call(ev.target.options)
         .filter((opt) => opt.selected)
         .map((opt) => opt.value)
     
     setTimes(nTimes)
   }
+
+  //console.log('---------------------' + Array.isArray(times) + '->' + times + '------------')
 
   return (
     <DemoInputGroup 

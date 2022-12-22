@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
+import { useResetableValue } from '../reset'
 
 const pad = (n) => 
   n.toString().padStart(2, '0')
@@ -17,7 +18,7 @@ const DemoInputDateSimple = () => {
     disallowedValues: [getToday(-1)]
   })
 
-  const [when, setWhen]= useState(getToday(-1))
+  const [when, setWhen]= useResetableValue(getToday(-1), undefined)
   
   const handleWhenChange = (nWhen) => {
     setWhen(nWhen)

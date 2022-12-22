@@ -1,5 +1,6 @@
 //import {log} from '../helpers/log'
 import {parseForCompare} from '../../helpers/compare.mjs'
+import getDefaultMessage from '../config/getDefaultMessage.mjs'
 import getInputValue from '../config/getInputValue.mjs'
 
 const countDecimals = (f) => {
@@ -14,7 +15,7 @@ const countDecimals = (f) => {
   }
 }
 
-const  checkValidity = (input, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals) => {
+const  _checkValidity = (input, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals) => {
   if (input==undefined) {
     return ''
   }
@@ -31,14 +32,16 @@ const  checkValidity = (input, transformValue, checkValue, allowedValues, disall
   let value = getInputValue(input)
   if (transformValue!=undefined) {
     value= transformValue(value)
-  }  
+  }
 
   let isEmptyValue= 
     value==undefined
     ? true
     : typeof value == 'string'
       ? value == ''
-      : false
+      : Array.isArray(value)
+        ? value.length==0
+        : false
 
   //log('input', `${input.name} (${input.type}) #${input.id} checkValidity() checking...`)
   
@@ -116,9 +119,10 @@ const  checkValidity = (input, transformValue, checkValue, allowedValues, disall
 
   // Allowed values list
   if ( (allowedValues != undefined) && (!isEmptyValue)) {
-    const exists= allowedValues
+    const parsedAlloValues= disallowedValues
       .map((v) => parseForCompare(inputType, v))
-      .indexOf(parseForCompare(inputType, value)) >= 0
+    const parsedValue = parseForCompare(inputType, value)
+    const exists= parsedAlloValues.indexOf(parsedValue) >= 0
     if (! exists) {
       return 'customAllowList'
     }
@@ -126,9 +130,12 @@ const  checkValidity = (input, transformValue, checkValue, allowedValues, disall
 
   // Disallowed values list
   if ( (disallowedValues != undefined) && (!isEmptyValue)) {
-    const exists= disallowedValues
+
+    const parsedDisaValues= disallowedValues
       .map((v) => parseForCompare(inputType, v))
-      .indexOf(parseForCompare(inputType, value)) >= 0
+    const parsedValue = parseForCompare(inputType, value)
+    const exists= parsedDisaValues.indexOf(parsedValue) >= 0
+
     if (exists) {
       return 'customDisallowList'
     }
@@ -161,8 +168,20 @@ const  checkValidity = (input, transformValue, checkValue, allowedValues, disall
       }
     }
   }
-
   return ''
 }  
+
+const  checkValidity = (input, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback) => {
+  const chkValidity= _checkValidity(input, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals)
+    
+  const nValidity= chkValidity==''
+              ? ''
+              : feedback!=undefined
+                ? feedback 
+                : getDefaultMessage(chkValidity)
+
+  return nValidity
+
+}
 
 export default checkValidity

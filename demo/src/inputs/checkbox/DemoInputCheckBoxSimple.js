@@ -1,13 +1,14 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
+import { useResetableValue } from '../reset'
 
 const DemoInputCheckBoxSimple = () => {
-  const [like, setLike]= useState(false)
+  const [like, setLike]= useResetableValue(false, false)
   const input = useInput({
     type: 'checkbox',
     disallowedValues: [0, false],
-    chackValue: (v) => v===true
+    //checkValue: (v) => v===true
   })
 
   
@@ -25,7 +26,7 @@ const DemoInputCheckBoxSimple = () => {
              type      = "checkbox"
              name      = {'like'}
              className = {input.valid ? 'valid' : 'invalid'}
-             value     = {like}
+             checked   = {like}
              onChange  = {(ev) => handleLikeChange(ev.target.checked)}>
       </input>                
     </DemoInputGroup>

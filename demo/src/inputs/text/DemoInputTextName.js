@@ -1,21 +1,17 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
+import { useResetableValue } from '../reset'
 
 const DemoInputTextName = () => {
-  const [name, setName]= useState('John Not Doe')
+  const [name, setName]= useResetableValue('John Not Doe', undefined)
 
   const input = useInput({
     type: 'text',
     disallowedValues: ["John Doe"],
     inputFilter: 'latin'
   })
-
-  const handleNameChange = (event) => {
-    const nName= event.target.value
-    setName(nName)
-  }
-
+  
   return (
     <DemoInputGroup 
       label       = {"Your name here"}
@@ -26,7 +22,7 @@ const DemoInputTextName = () => {
               className = {input.valid ? 'valid' : 'invalid'}
               required  = {true}
               value     = {name}
-              onChange  = {(ev) => handleNameChange(ev)}/>
+              onChange  = {(ev) => setName(event.target.value)}/>
     </DemoInputGroup>
 
   )

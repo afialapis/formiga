@@ -5,6 +5,7 @@ import DemoInputColor from './inputs/color/DemoInputColor'
 import DemoInputDate from './inputs/date/DemoInputDate'
 import DemoInputFile from './inputs/file/DemoInputFile'
 import DemoInputNumber from './inputs/number/DemoInputNumber'
+import { triggerReset } from './inputs/reset'
 import DemoInputSelect from './inputs/select/DemoInputSelect'
 import DemoInputText from './inputs/text/DemoInputText'
 import DemoInputTextArea from './inputs/textarea/DemoInputTextArea'
@@ -46,18 +47,18 @@ const Demo = () => {
         <form ref = {form.ref}>
           <div className="formiga-form-inputs">
             <div className="formiga-form-inputs-left">
-              <DemoInputText/>
-              <DemoInputTextArea/>
+              {/*<DemoInputText/>
+              <DemoInputTextArea/>*/}
             </div>
             <div className="formiga-form-inputs-middle">
-               <DemoInputNumber/>
-               <DemoInputDate/>
+               {/*<DemoInputNumber/>
+               <DemoInputDate/>*/}
                <DemoInputCheckbox/>
             </div>
             <div className="formiga-form-inputs-right">
-              <DemoInputSelect/>
+              {/*<DemoInputSelect/>
               <DemoInputColor/>
-              <DemoInputFile/>
+              <DemoInputFile/>*/}
             </div>
           </div>
             
@@ -66,6 +67,11 @@ const Demo = () => {
                onClick={(_ev) => updateResume()}>
                 {form.valid ? 'Submit' : 'Check wrong values before sumitting'}
             </a>
+
+            <a className={`btn btn-secondary`}
+               onClick={(_ev) => triggerReset()}>
+                {'Reset fields'}
+            </a>            
           </div>                 
         </form>
       </div>

@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
+import { useResetableValue } from '../reset'
 
 const DemoInputColorSimple = () => {
 
@@ -10,7 +11,7 @@ const DemoInputColorSimple = () => {
     feedback: 'Neither black nor white'
   })
 
-  const [color, setColor]= useState('#FF00FF')
+  const [color, setColor]= useResetableValue('#FF00FF', '')
   
   const handleColorChange = (nColor) => {
     setColor(nColor)

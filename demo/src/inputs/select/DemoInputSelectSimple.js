@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
+import { useResetableValue } from '../reset'
 
 const LIST_OPTIONS= [
   ['' , '---'],
@@ -11,7 +12,7 @@ const LIST_OPTIONS= [
 ]
 
 const DemoInputSelectSimple = () => {
-  const [experience, setExperience]= useState(undefined /*'1'*/)
+  const [experience, setExperience]= useResetableValue(undefined /*'1'*/, '')
 
   const input = useInput({
     type: 'select',

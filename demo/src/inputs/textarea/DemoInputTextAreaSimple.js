@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useInput} from '../../../../src'
 import {DemoInputGroup} from '../DemoInputGroup'
+import { useResetableValue } from '../reset'
 
 const DemoInputTextAreaSimple = () => {
-  const [story, setStory]= useState('It started a warm Friday\'s night. I was bored...')
+  const [story, setStory]= useResetableValue('It started a warm Friday\'s night. I was bored...')
 
   const input = useInput({
     type: 'textarea'

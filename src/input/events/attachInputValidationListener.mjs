@@ -5,8 +5,8 @@ import getEventTarget from '../config/getEventTarget.mjs'
 const attachInputValidationListener = (node, validateInput) => {
 
   const validationHandler = (event) => {
-    const node= getEventTarget(event)
-    validateInput(node)
+    const theNode= getEventTarget(event)
+    validateInput(theNode)
   }
 
   const validationEvents= getValidationEvents(node.type) || []

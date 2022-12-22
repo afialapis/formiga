@@ -9,8 +9,8 @@ const DemoInputText = () => {
   return (
     <DemoInputsSection name="text">
       <DemoInputTextName/>
-      <DemoInputTextAge/>
-      <DemoInputTextWords/>
+      {/*<DemoInputTextAge/>
+      <DemoInputTextWords/>*/}
     </DemoInputsSection>
   )
 }
