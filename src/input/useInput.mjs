@@ -66,8 +66,9 @@ const useInput = (props) => {
   //    
   const validate = useCallback(() => {
     if (inputNode!=undefined) {
-      validateInput(inputNode)
+      return validateInput(inputNode)
     }
+    return undefined
   }, [inputNode, validateInput])
 
   const setValue = useCallback((v) => {

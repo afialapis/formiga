@@ -5,18 +5,18 @@ import { useResetableValue } from '../reset'
 
 const LIST_OPTIONS= [
   ['' , '---'],
-  ['1', "It's fascinating"],
-  ['2', "It's cool"],
-  ['3', "Well... beh!"],
-  ['4', "Take it away from me"],
+  [1, "It's fascinating"],
+  [2, "It's cool"],
+  [3, "Well... beh!"],
+  [4, "Take it away from me"],
 ]
 
 const DemoInputSelectSimple = () => {
-  const [experience, setExperience]= useResetableValue(undefined /*'1'*/, '')
+  const [experience, setExperience]= useResetableValue(3, '')
 
   const input = useInput({
     type: 'select',
-    disallowedValues: ['3', '4']
+    disallowedValues: [3, 4]
   })
   
   return (
