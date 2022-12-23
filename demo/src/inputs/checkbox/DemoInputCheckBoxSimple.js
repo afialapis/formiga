@@ -8,14 +8,10 @@ const DemoInputCheckBoxSimple = () => {
   const input = useInput({
     type: 'checkbox',
     disallowedValues: [0, false],
-    //checkValue: (v) => v===true
+    checkValue: (v) => v===true
   })
 
-  
 
-  const handleLikeChange = (nLike) => {
-    setLike(nLike)
-  }
 
   return (
     <DemoInputGroup 
@@ -27,7 +23,8 @@ const DemoInputCheckBoxSimple = () => {
              name      = {'like'}
              className = {input.valid ? 'valid' : 'invalid'}
              checked   = {like}
-             onChange  = {(ev) => handleLikeChange(ev.target.checked)}>
+             onChange  = {(ev) => setLike(ev.target.checked)}
+             >
       </input>                
     </DemoInputGroup>
   )

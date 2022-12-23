@@ -11,7 +11,7 @@ const DemoInputColorSimple = () => {
     feedback: 'Neither black nor white'
   })
 
-  const [color, setColor]= useResetableValue('#FF00FF', '')
+  const [color, setColor]= useResetableValue('#FF00FF', '#000000')
   
   const handleColorChange = (nColor) => {
     setColor(nColor)

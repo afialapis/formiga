@@ -15,7 +15,7 @@ const DemoInputTextName = () => {
   return (
     <DemoInputGroup 
       label       = {"Your name here"}
-      description = {"Controlled. Required. 'John Doe' is disallowed. Latin chars."}
+      description = {"Required. 'John Doe' is disallowed. Latin chars."}
       feedback    = {input.feedback}>
       <input ref       = {input.ref}
               name      = {'name'}

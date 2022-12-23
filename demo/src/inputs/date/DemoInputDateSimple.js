@@ -27,12 +27,13 @@ const DemoInputDateSimple = () => {
   return (
     <DemoInputGroup 
       label       = {"When did you last see Formiga?"}
-      description = "I think you saw it today"
+      description = "Required. Just yesterday is disallowed."
       feedback    = {input.feedback}>
       <input ref          = {input.ref}
              type         = "date"
              name         = {'when'}
              className    = {input.valid ? 'valid' : 'invalid'}
+             required     = {true}
              value        = {when}
              onChange     = {(ev) => handleWhenChange(ev.target.value)}/>
     </DemoInputGroup>

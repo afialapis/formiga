@@ -5,43 +5,24 @@ import useInputFilter from './inputFilter/useInputFilter.mjs'
 import useCheckboxEnsure from './ensurers/useCheckboxEnsure.mjs'
 import checkValidity from './validation/checkValidity.mjs'
 import setCustomValidity from './events/setCustomValidity.mjs'
-
 import attachInputValidationListener from './events/attachInputValidationListener.mjs'
-import getInputValue from './config/getInputValue.mjs'
-import { parseForCompare } from '../helpers/compare.mjs'
 
-const _checkValue = (node, value) => {
-  const nodeValue=getInputValue(node)
-  const parsedNodeValue=  parseForCompare(node.type, nodeValue)
-  const parsedValue = parseForCompare(node.type, value)
-  return [parsedNodeValue===parsedValue, nodeValue]
-}
 const useInput = (props) => {
-
-  const {transformValue, checkValue, 
-        allowedValues, disallowedValues, 
-        doRepeat, doNotRepeat, decimals, 
-        inputFilter, feedback}= props || {}
     
   const [inputNode, setInputNode]= useState(undefined)
   const [validity, setValidity]= useState('')
-  const [lastValidatedValue, setLastValidatedValue]= useState([])
 
   //
-  // validate function
+  // validate input callback
   //
   const validateInput = useCallback((node) => {
-    //const [same, inputValue]= _checkValue(node, lastValidatedValue)
-    //if (same) return
-    //setLastValidatedValue(inputValue)
-
-    const nValidity= checkValidity(node, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback)
+    const nValidity= checkValidity(node, props)
     log_input(node, `input validated to [${nValidity}]`)
     setValidity(nValidity)
-    setCustomValidity(node, nValidity, transformValue)
+    setCustomValidity(node, nValidity, props.transformValue)
     
     return nValidity
-  }, [/*lastValidatedValue, */ transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback])
+  }, [props])
 
   //
   // input Ref as callback
@@ -55,11 +36,12 @@ const useInput = (props) => {
     }
   }, [validateInput]) 
   
+  //
+  // attach listeners on node mount
+  //  
   useEffect(() => {
     if (inputNode!= undefined) {
       const listeners= attachInputValidationListener(inputNode, validateInput)
-      
-      //validateInput(inputNode)
       return listeners
     }
   }, [inputNode, validateInput])
@@ -67,19 +49,17 @@ const useInput = (props) => {
   //
   // Specific effect to check props consistency. Just DEV time
   //
-  //useCheckProps(inputNode, doRepeat, doNotRepeat, inputFilter)
+  useCheckProps(inputNode, props /*doRepeat, doNotRepeat, inputFilter*/)
 
   //
   // Attaches input filters when needed
   //
-  //useInputFilter(inputNode, inputFilter)
+  useInputFilter(inputNode, props.inputFilter)
 
   //
   // Ensures checkboxes value
   //
-  //useCheckboxEnsure(inputNode)
-
-
+  useCheckboxEnsure(inputNode)
 
   //
   // several callbacks to return 
@@ -99,9 +79,9 @@ const useInput = (props) => {
   const forceSetValidity = useCallback((nValidity) => {
     if (inputNode!=undefined) {
       setValidity(nValidity)
-      setCustomValidity(inputNode, nValidity, transformValue)
+      setCustomValidity(inputNode, nValidity, props.transformValue)
     }
-  }, [inputNode, transformValue])
+  }, [inputNode, props.transformValue])
   
   const dispatchEvent = useCallback((type, props) => {
     if (inputNode==undefined) {
@@ -122,7 +102,6 @@ const useInput = (props) => {
     log_input(inputNode, 'render')
   }
 
-
   return {
     ref: inputRef,
     node: inputNode,
@@ -134,7 +113,5 @@ const useInput = (props) => {
     dispatchEvent
   }
 }
-
-
 
 export default useInput

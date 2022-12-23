@@ -3,7 +3,6 @@ import {useEffect, useState} from 'react'
 const useResetHandler = (callback) => {
   useEffect(() => {
     const handler= (event) => {
-      console.log('handling the reset...')
       callback()
     }
     document.body.addEventListener('formiga-reset', handler)
@@ -16,7 +15,10 @@ const useResetHandler = (callback) => {
 const useResetableValue = (val, rval= '') => {
   const [value, setValue]= useState(val)
   
-  useResetHandler(() => setValue(rval))
+  useResetHandler(() => {
+    //console.log(`resetting to value ${typeof rval} ${rval}`)
+    setValue(rval)
+  })
   return [value, setValue]
 }
 
@@ -31,7 +33,6 @@ const useResetableDefValue = (val, input, rval= '') => {
 }
 
 const triggerReset = () => {
-  console.log('triggering reset')
   const event = new Event('formiga-reset')
   document.body.dispatchEvent(event)
 }

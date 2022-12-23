@@ -16,6 +16,8 @@ const countDecimals = (f) => {
 }
 
 const  _checkValidity = (input, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals) => {
+
+  
   if (input==undefined) {
     return ''
   }
@@ -129,7 +131,7 @@ const  _checkValidity = (input, transformValue, checkValue, allowedValues, disal
   }
 
   // Disallowed values list
-  if ( (disallowedValues != undefined) && (!isEmptyValue)) {
+  if ( (disallowedValues != undefined)) {
 
     const parsedDisaValues= disallowedValues
       .map((v) => parseForCompare(inputType, v))
@@ -171,7 +173,7 @@ const  _checkValidity = (input, transformValue, checkValue, allowedValues, disal
   return ''
 }  
 
-const  checkValidity = (input, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback) => {
+const  checkValidity = (input, {transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback}) => {
   const chkValidity= _checkValidity(input, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals)
     
   const nValidity= chkValidity==''

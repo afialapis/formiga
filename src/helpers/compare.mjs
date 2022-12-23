@@ -61,7 +61,7 @@ const parseForCompare = (inputType, value) => {
     try {
       return value.sort().join(',')
     } catch(e) {}
-    return []
+    return ''
   }
 
   return value.toString()

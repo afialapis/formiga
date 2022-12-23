@@ -47,18 +47,18 @@ const Demo = () => {
         <form ref = {form.ref}>
           <div className="formiga-form-inputs">
             <div className="formiga-form-inputs-left">
-              {/*<DemoInputText/>
-              <DemoInputTextArea/>*/}
+              <DemoInputText/>
+              <DemoInputTextArea/>
             </div>
             <div className="formiga-form-inputs-middle">
-               {/*<DemoInputNumber/>
-               <DemoInputDate/>*/}
-               <DemoInputCheckbox/>
+               <DemoInputNumber/>
+               <DemoInputDate/>
+            <DemoInputCheckbox/>
             </div>
             <div className="formiga-form-inputs-right">
-              {/*<DemoInputSelect/>
-              <DemoInputColor/>
-              <DemoInputFile/>*/}
+              <DemoInputSelect/>
+             <DemoInputColor/>
+              <DemoInputFile/>
             </div>
           </div>
             

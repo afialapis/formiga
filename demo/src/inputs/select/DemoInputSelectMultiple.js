@@ -20,11 +20,11 @@ const DemoInputSelectMultiple = () => {
   const [times, setTimes]= useResetableValue(['3', '5', '7'], [])
 
   const input = useInput({
-    disallowedValues: [['1', '3', '5', '7'], [], '', undefined]
+    disallowedValues: [['1', '3', '5', '7'], []],
+    //checkValue: (v) => {console.log(`checking value ${typeof v}${v}`); return true}
   })
 
   const handleTimesChange = (ev) => {
-    console.log(`handleTimesChange: ${JSON.stringify(ev.target.options)}`)
     const nTimes= Array.prototype.slice.call(ev.target.options)
         .filter((opt) => opt.selected)
         .map((opt) => opt.value)

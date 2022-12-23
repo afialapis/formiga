@@ -16,14 +16,15 @@ const setCustomValidity = (node, validity, transformValue) => {
   let value = getInputValue(node)
   if (transformValue!=undefined) {
     value= transformValue(value)
-  }  
+  } 
+  const valueStr= value!=undefined ? value.toString() : '' 
 
   node.setCustomValidity(validity)
   node.setAttribute('data-formiga-validity', validity) 
-  node.setAttribute('data-formiga-value', value) 
+  node.setAttribute('data-formiga-value', valueStr) 
 
   // Update form     
-  if ((prevValue != value) || (prevValidity != validity) ) {
+  if ((prevValue != valueStr) || (prevValidity != validity) ) {
     if (node.form != undefined) {
       if (node.form.getAttribute('data-formiga-loaded')=='1') {
 

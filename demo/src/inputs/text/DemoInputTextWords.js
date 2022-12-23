@@ -7,7 +7,8 @@ const DemoInputTextWords = () => {
   
 
   const input = useInput({
-    type: 'text'
+    type: 'text',
+    //checkValue: (v) => (v!=undefined) && (v.length<=20),
   })
 
   const [words, setWords]= useResetableValue("That's indeed ANT real thing!")
@@ -16,7 +17,7 @@ const DemoInputTextWords = () => {
   return (
     <DemoInputGroup
       label       = {"Your experience with Formiga in two words"}
-      description = {`Controlled. Not required. Max length 20 (currently ${words ? words.length : 0})`}
+      description = {`Optional. Max length 20 (currently ${words ? words.length : 0})`}
       feedback    = {input.feedback}>
       <input ref          = {input.ref}
               name         = {'words'}
