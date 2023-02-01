@@ -1,4 +1,4 @@
-<img src="https://formiga.afialapis.com/logo.png" alt="Formiga logo" width="200"/>
+![Formiga logo](https://formiga.afialapis.com/logo.png)
 
 [![NPM Version](https://badge.fury.io/js/formiga.svg)](https://www.npmjs.com/package/formiga)
 [![NPM Downloads](https://img.shields.io/npm/dm/formiga.svg?style=flat)](https://www.npmjs.com/package/formiga)
