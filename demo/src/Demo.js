@@ -10,6 +10,8 @@ import DemoInputSelect from './inputs/select/DemoInputSelect'
 import DemoInputText from './inputs/text/DemoInputText'
 import DemoInputTextArea from './inputs/textarea/DemoInputTextArea'
 
+import '../assets/scss/index.scss'
+
 const _getResumeFromFormElements = (elements) => {
   const resume= []
   elements.map(el => {
@@ -36,10 +38,6 @@ const Demo = () => {
   }, [updateResume])
 
   return (  
-    <>
-    <div className="formiga-title">
-      {"Formiga demo"}
-    </div>
     <div className="formiga-container">
 
       <div className="formiga-form">
@@ -90,8 +88,7 @@ const Demo = () => {
         </div>
       </div>
     </div>
-    </>
   )
 }
 
-export {Demo}
+export default Demo

@@ -22,7 +22,7 @@ const DemoInputTextName = () => {
               className = {input.valid ? 'valid' : 'invalid'}
               required  = {true}
               value     = {name}
-              onChange  = {(ev) => setName(event.target.value)}/>
+              onChange  = {(event) => setName(event.target.value)}/>
     </DemoInputGroup>
 
   )

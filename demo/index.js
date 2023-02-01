@@ -1,9 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import {Demo} from './src/Demo'
+import DemoWithHeader from './src/DemoWithHeader'
 
-import './assets/scss/index.scss'
-
-
-ReactDOM.render(<Demo/>, document.getElementById('docaine_demo'))
+ReactDOM.render(<DemoWithHeader/>, document.getElementById('docaine_demo'))

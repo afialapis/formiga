@@ -1,8 +1,5 @@
-# formiga
-
-![Formiga logo](https://formiga.afialapis.com/assets/images/logo/formiga_name.png)
+![Formiga logo](https://formiga.afialapis.com/logo.png)
 [![NPM Version](https://badge.fury.io/js/formiga.svg)](https://www.npmjs.com/package/formiga)
-[![Dependency Status](https://david-dm.org/afialapis/formiga.svg)](https://david-dm.org/afialapis/formiga)
 [![NPM Downloads](https://img.shields.io/npm/dm/formiga.svg?style=flat)](https://www.npmjs.com/package/formiga)
 
 The simplest -yet effective- form validator for React: stick to -and empower- web standards ([HTML5 Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation)) instead of ignore them.
@@ -16,7 +13,6 @@ The simplest -yet effective- form validator for React: stick to -and empower- we
 4. [Demo](#demo)
 5. [Install](#install)
 6. [Getting started](#getting-started)
-7. [Docs](#docs)
 
 # Intro
 
@@ -43,14 +39,14 @@ Formiga is here to make your Forms much nicer: with [`prematureValidation`](#pre
 
 `formiga` cares just about state and validation of your forms. UI and styling is out of scope. That's why you will probably not use `formiga` directly, but some of the integrations with some UI library. List is tiny yet:
 
-· [formiga-reactstrap](https://github.com/afialapis/formiga-reactstrap)
+· [`formiga-reactstrap`](https://github.com/afialapis/formiga-reactstrap)
 
 Given `formiga` works with native HTML elements (`<form>`, `<input>`, `<textarea>`, `<select>`), you will find pretty easy to couple it with any UI library. Or even just with some custom `CSS` if you go minimalist, as in our [Demo](#demo).
 
 
 # Demo
 
-Check a live demo at [formiga.afialapis.com](https://formiga.afialapis.com).
+Check a live demo at [formiga.afialapis.com](https://formiga.afialapis.com/demo).
 
 Or run it locally with:
 
@@ -83,16 +79,16 @@ import React, {useState} from 'react'
 
 const FormigaForm = () => {
 
-  const [formRef, valid, formElements] = useForm()
+  const form = useForm()
   const [name, setName]= useState('John Doe')
   const [age, _setAge]= useState('33') 
 
-  const [nameRef, nameValidity] = useInput({
+  const nameInput = useInput({
     type: 'text',
     disallowedValues: ["John Not Doe"],
     inputFilter: 'latin'
   })
-  const [ageRef, ageValidity] = useInput({
+  const ageInput = useInput({
     type: 'text',
     checkValue: (v) => !isNaN(v) && parseInt(v)>=18,
     inputFilter: 'int'
@@ -102,9 +98,8 @@ const FormigaForm = () => {
   const handleSubmit = () => {
     let resume= ''
 
-    Object.keys(formElements)
-      .map((name) => {
-        const el= formElements[name]
+    form.elements
+      .map((el) => {
         resume+= `Input ${el.name} ${el.valid ? 'is' : 'is not'} valid\n`
       })
 
@@ -117,27 +112,27 @@ const FormigaForm = () => {
 
   return (  
 
-    <form ref = {formRef}>
+    <form ref = {form.ref}>
         
       {/* A controlled input */}
-      <input ref       = {nameRef}
+      <input ref       = {nameInput.ref}
              name      = {'name'}
-             className = {nameValidity.valid ? 'valid' : 'invalid'}
+             className = {nameInput.valid ? 'valid' : 'invalid'}
              required  = {true}
              value     = {name}
              onChange  = {(event) => setName(event.target.value)}/>
 
       {/* An uncontrolled input */}
-      <input ref       = {ageRef}
+      <input ref       = {ageInput.ref}
              name      = {'age'}
-             className = {ageValidity.valid ? 'valid' : 'invalid'}
+             className = {ageInput.valid ? 'valid' : 'invalid'}
              required  = {true}
              defaultValue = {age}/>
 
 
       <button
              onClick  ={(_ev) => handleSubmit()}
-             disabled = {! valid}>
+             disabled = {! form.valid}>
         Save
       </button>
 
@@ -147,8 +142,4 @@ const FormigaForm = () => {
 }          
 
 ```
-
-# Docs
-
-For complete docs, check [formiga.afialapis.com](https://formiga.afialapis.com)
 

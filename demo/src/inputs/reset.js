@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 
 const useResetHandler = (callback) => {
   useEffect(() => {
-    const handler= (event) => {
+    const handler= (_event) => {
       callback()
     }
     document.body.addEventListener('formiga-reset', handler)
