@@ -1,6 +1,6 @@
 {
   "name": "formiga",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "The simplest -yet effective- form validator for React",
   "keywords": [
     "js",
@@ -45,7 +45,7 @@
     "clean-site": "rm -rf arredemo",
     "clean-all": "npm run --silent clean-demo && npm run --silent clean-lib && npm run --silent clean-dist && npm run --silent clean-site",
     "lint": "npx xeira lint",
-    "test": "npx xeira test ./test/before.mjs ./test/units/*.cjs",
+    "test": "npx xeira test --files=./test/before.mjs,./test/units/*.cjs",
     "lib": "npm run --silent clean-lib && npx xeira transpile",
     "dist": "npm run --silent clean-dist && npx xeira bundle",
     "site": "npm run --silent clean-site && npx xeira site",
@@ -54,16 +54,10 @@
     "reset": "npm run --silent clean-all && rm -fr node_modules package-lock.json && npm i"
   },
   "devDependencies": {
-    "xeira": "^0.0.34"
-  },
-  "dependencies": {
-    "react": "^16.13.1"
+    "xeira": "^0.3.2"
   },
   "peerDependencies": {
-    "react": ">=16.13.1"
-  },
-  "babel": {
-    "extends": "./node_modules/xeira/configs/babel.react.cjs"
+    "react": "^16.13.1"
   },
   "eslintConfig": {
     "extends": [

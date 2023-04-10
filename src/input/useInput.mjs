@@ -35,6 +35,7 @@ const useInput = (props) => {
       setInputNode(node)
     }
   }, [validateInput]) 
+  inputRef.current = inputRef
   
   //
   // attach listeners on node mount
