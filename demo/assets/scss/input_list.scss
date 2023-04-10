@@ -1,0 +1,107 @@
+
+.formiga-input-list {
+    
+  //padding: 1em 0 0 10%;
+  border: 0.25px solid #e8e8e8;
+  padding: 1em;
+  position: relative;
+  overflow: hidden;
+
+  &.with-code {
+    padding-bottom: 2em;
+  }
+
+
+  .formiga-input-list-show-code {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    max-width: 100%;
+    display: flex;
+    //background: #ebeaea;
+    z-index: 1;
+    
+    div {
+      text-transform: none;
+      user-select: none;
+      border-color: rgba(0, 0, 0, 0.1) currentcolor currentcolor rgba(0, 0, 0, 0.1);
+      border-style: solid none none solid;
+      border-width: 1px 0px 0px 1px;
+      border-image: none 100% / 1 / 0 stretch;
+      padding: 4px 10px;
+      cursor: pointer;
+      display: flex;
+      -moz-box-align: center;
+      align-items: center;
+      color: #333333;
+      background: #fdfdfd;
+      font-size: 12px;
+      line-height: 16px;
+      //font-family: "Nunito Sans", -apple-system, ".SFNSText-Regular", "San Francisco", BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      //font-weight: 700;
+      margin-left: -1px;
+      border-radius: 4px 0px 0px;   
+      
+      &:hover,
+      &:active,
+      &:focus {
+        background: #ececec;
+      }
+    }
+  }
+}
+
+
+
+.formiga-input-list-code {
+  position: relative;
+
+  pre {
+    margin: 0 !important;
+    padding: 1em !important;
+    line-height: 1em !important;
+    code {
+      font-size: 9pt !important;
+      line-height: 1em !important;
+    }
+  }
+
+
+  .formiga-input-list-code-copy {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    max-width: 100%;
+    display: flex;
+    //background: #ebeaea;
+    z-index: 1;
+    
+    div {
+      text-transform: none;
+      user-select: none;
+      border-color: #fdfdfd currentcolor currentcolor #fdfdfd;
+      border-style: solid none none solid;
+      border-width: 1px 0px 0px 1px;
+      border-image: none 100% / 1 / 0 stretch;
+      padding: 4px 10px;
+      cursor: pointer;
+      display: flex;
+      -moz-box-align: center;
+      align-items: center;
+      color: #fdfdfd;
+      font-size: 12px;
+      line-height: 16px;
+      //font-family: "Nunito Sans", -apple-system, ".SFNSText-Regular", "San Francisco", BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      //font-weight: 700;
+      margin-left: -1px;
+      border-radius: 4px 0px 0px;   
+      
+      &:hover,
+      &:active,
+      &:focus {
+        background: #6a6a6a;
+      }
+    }
+  }
+
+}

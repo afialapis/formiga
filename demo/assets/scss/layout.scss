@@ -1,53 +1,86 @@
-/**
- * main styling
- */
-
-
 body {
-  .formiga-title {
+  //background-color: #898989;
+  //   Included in /demo, not in /arredemo
+  .formiga-main-title {
     text-align: center;
     color: $brand-black;
     font-family: $font-primary;
-    font-weight: 200;    
+    font-weight: 200;
     background-image: url('assets/img/formiga.png');
     background-repeat: no-repeat;
-    background-size: 15px;    
+    background-size: 15px;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
   }
 
   .formiga-container {
+
+    padding: 0 5%;
+
+    .formiga-section {
+
+      .formiga-section-description {
+        padding: 0 2em 2em 2em;
+      }
+
+      .formiga-section-inputs {
+        padding: 0 2em;
+        
+      }
+    }
+  }
+
+}
+
+
+
+/*
+  .formiga-container {
     display: flex;
 
-    .formiga-form {
+    .formiga-title {
+      color: $brand-black;
+      font-family: $font-primary;
+      font-weight: 200;
+      font-size: 18pt;
+    }
+
+
+    .formiga-form-wrapper {
       flex: 75%;
-
-
-
-      .formiga-form-inputs {
-        display: flex;
-        .formiga-form-inputs-left,
-        .formiga-form-inputs-middle,
-        .formiga-form-inputs-rigth {
-          flex: 33%;
-          padding: 0 2em;
-        }
-
-        .formiga-form-input-type-section { 
-          h2 {
-            border-bottom: 1px solid gray;
-          }
-        }    
+      display: flex;
+      -moz-box-pack: center;
+      justify-content: center;
+      //padding: 4rem 20px;
+      min-height: 100vh;
+      
+      .formiga-form {
+        max-width: 1000px;
+        width: 100%;
         
-        .formiga-form-input-type-section:not(:first-child) {
-          margin-top: 2em;
-  
+        .formiga-form-inputs {
+
+          .formiga-form-input-type-section { 
+            h2 {
+              border-bottom: 1px solid gray;
+            }
+          }    
+          
+          .formiga-form-input-type-section:not(:first-child) {
+            margin-top: 2em;
+    
+          }
         }
+
+        .formiga-form-buttons {
+          text-align: center;
+          margin: 2em 0;
+        }        
       }
 
 
-      .formiga-form-buttons {
-        text-align: center;
-        margin-top: 2em;
-      }
+
     }
     .formiga-resume {
       flex: 25%;
@@ -62,32 +95,4 @@ body {
 
 }
 
-
-
-/*
-.centered {
-  text-align: center;
-}
-
-.mgbottom {
-  margin-bottom: 2em;
-}
-
-.mgleft {
-  margin-left: 2em;
-}
-
-
-.row {
-  display: flex;
-}
-
-.column {
-  flex: 50%;
-  margin: 0 2em;
-  background-color: #ece8e8;
-  padding: 1em;
-}
 */
-
-

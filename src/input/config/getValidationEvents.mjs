@@ -38,3 +38,21 @@ const getValidationEvents = (inputType) => {
 
 
 export default getValidationEvents
+
+
+Y SI ES QUE SOLO NECESITAMOS EL onInput (QUE VIENE SIENDO EL onCHange DE REACT)
+
+1) abarca el React.onChange ya toda nuestra PrematureValidation?
+   si es que si, olvidemosla
+   si es que no, repasemos bien en que puntos
+
+2) podemos hacer que de alguna manera se disponga de los nativos
+   DOM.onInput y DOM.onChange
+  en contraposicion al REACT.onChange (que es igual al React.onInput)
+  ??
+  quiza como parametros al useInput()
+  rollo useInput({
+    onChange: () => {}, // real dom onChange listener
+  })
+
+  => onrejectionhandled, aqui el punto es que estariamos proveyendo LO CONTRARIO a la prematureValidation

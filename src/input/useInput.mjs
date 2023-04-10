@@ -8,7 +8,6 @@ import setCustomValidity from './events/setCustomValidity.mjs'
 import attachInputValidationListener from './events/attachInputValidationListener.mjs'
 
 const useInput = (props) => {
-    
   const [inputNode, setInputNode]= useState(undefined)
   const [validity, setValidity]= useState('')
 
@@ -19,7 +18,7 @@ const useInput = (props) => {
     const nValidity= checkValidity(node, props)
     log_input(node, `input validated to [${nValidity}]`)
     setValidity(nValidity)
-    setCustomValidity(node, nValidity, props.transformValue)
+    setCustomValidity(node, nValidity, props?.transformValue)
     
     return nValidity
   }, [props])
@@ -54,7 +53,7 @@ const useInput = (props) => {
   //
   // Attaches input filters when needed
   //
-  useInputFilter(inputNode, props.inputFilter)
+  useInputFilter(inputNode, props?.inputFilter)
 
   //
   // Ensures checkboxes value
@@ -80,19 +79,19 @@ const useInput = (props) => {
   const forceSetValidity = useCallback((nValidity) => {
     if (inputNode!=undefined) {
       setValidity(nValidity)
-      setCustomValidity(inputNode, nValidity, props.transformValue)
+      setCustomValidity(inputNode, nValidity, props?.transformValue)
     }
-  }, [inputNode, props.transformValue])
+  }, [inputNode, props?.transformValue])
   
-  const dispatchEvent = useCallback((type, props) => {
+  const dispatchEvent = useCallback((ev_type, ev_props) => {
     if (inputNode==undefined) {
       return
     }
-    const inputEvent = new Event(type, {
-      bubbles: props?.bubbles || true,
-      cancelable: props?.cancelable || true,
-      view: props?.view || window,
-      detail: props?.detail || props?.data || {}
+    const inputEvent = new Event(ev_type, {
+      bubbles: ev_props?.bubbles || true,
+      cancelable: ev_props?.cancelable || true,
+      view: ev_props?.view || window,
+      detail: ev_props?.detail || ev_props?.data || {}
     })
     inputNode.dispatchEvent(inputEvent)
 

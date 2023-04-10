@@ -1,26 +1,40 @@
 .formiga-input-group {
   margin-top: 1em;
-  padding: 0.5em;
-  border: 0.25px solid #e8e8e8;
-  border-right: 0.25px solid #e8e8e8;
+  //padding: 0.5em;
+  //border: 0.25px solid #e8e8e8;
+  //border-right: 0.25px solid #e8e8e8;
 
-  .formiga-input-header {
-    
-    .formiga-input-label {
+  .formiga-input-group-top {
 
+    display: flex;
+    align-items: center;
+
+    .formiga-input-group-label {
+      flex: 50%;
+      color: #414040;
+      
       label {
-        color: #555050;
+        font-style: italic;
       }
     }
 
-    .formiga-input-description {
-      color: #6e6161;
-      font-size: 12px;
-      font-style: italic;
+    .formiga-input-group-description {
+      //color: #6e6161;
+      //font-size: 12px;
+      //font-style: italic;
+      //text-align: right;
+      padding: 0.5em 0;
+      color: #6c6a6a;
+
+      flex: 50%;
       text-align: right;
+      
+      &:before {
+        content: "> ";
+        color: #898989;
+        font-weight: bold;
+      }
     }
-
-
   }
 
   input, 
@@ -49,15 +63,16 @@
   select.invalid {
     border-color: red;
   }
-  .formiga-input-feedback {
-    color: red;
+  .formiga-input-group-feedback {
+    color: #f54141;
     font-style: italic;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
 
-  input.valid > .formiga-input-feedback,
-  textarea.valid > .formiga-input-feedback,
-  select.valid > .formiga-input-feedback {
+  input.valid > .formiga-input-group-feedback,
+  textarea.valid > .formiga-input-group-feedback,
+  select.valid > .formiga-input-group-feedback {
     display: none;
   }
+  
 }

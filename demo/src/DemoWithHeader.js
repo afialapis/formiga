@@ -4,8 +4,8 @@ import Demo from './Demo'
 const DemoWithHeader = () => {
   return (
     <>
-      <div className="formiga-title">
-        {"Formiga demo"}
+      <div className="formiga-main-title">
+        <b>formiga</b> <i style={{color: "gray"}}>demo</i>
       </div>
       <Demo/>
     </>    

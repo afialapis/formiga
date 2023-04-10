@@ -3,17 +3,14 @@
 [![NPM Version](https://badge.fury.io/js/formiga.svg)](https://www.npmjs.com/package/formiga)
 [![NPM Downloads](https://img.shields.io/npm/dm/formiga.svg?style=flat)](https://www.npmjs.com/package/formiga)
 
-The simplest -yet effective- form validator for React: stick to -and empower- web standards ([HTML5 Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation)) instead of ignore them.
+The simplest -yet effective- form validator for React: stick to (and empower) web standard ([HTML5 Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation)) instead of ignore them.
 
 
-# Table of Contents
+# Install
 
-1. [Intro](#intro)
-2. [Premature Validation](#premature-validation)
-3. [UI integrations](#ui-integrations)
-4. [Demo](#demo)
-5. [Install](#install)
-6. [Getting started](#getting-started)
+```
+  npm i formiga
+```
 
 # Intro
 
@@ -30,22 +27,28 @@ The simplest -yet effective- form validator for React: stick to -and empower- we
   - extend it with a few basic validations that HTML does not provide (`allowedValues`, `disallowedValues`, `doRepeat`, `doNotRepeat` ,`checkValue`), while keeping in sync the element's [ValidityState](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState)
   - empower it with [`prematureValidation`](#premature-validation)
 
-# Premature Validation
+## Premature Validation
 
 [_HTML5 Constraint Validation API_](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation) checks for validity changes when the input changes. Depending on the browser, it may mean: when the input's value changes or just when the input loses the focus.
 
 Formiga is here to make your Forms much nicer: with [`prematureValidation`](#premature-validation), the [ValidityState](https://developer.mozilla.org/en-US/docs/Web/API/ValidityState) is updated *always* while typing!
 
-# UI integrations
 
-`formiga` cares just about state and validation of your forms. UI and styling is out of scope. That's why you will probably not use `formiga` directly, but some of the integrations with some UI library. List is tiny yet:
+## UI integrations
+
+`formiga` cares just about state and validation of your `<form>` (and its children 
+`<input>`, `<textarea>` or `<select>`). But `formiga` renders nothing. UI and, therefore, 
+styling are out of scope. 
+
+As shown by our [Demo](#demo), using `formiga` and a few `CSS` lines, you will have nice Forms
+with a very simple code.
+
+`formiga`'s simplicity make it easy also to integrate it with any UI library. Existing list is tiny yet:
 
 · [`formiga-reactstrap`](https://github.com/afialapis/formiga-reactstrap)
 
-Given `formiga` works with native HTML elements (`<form>`, `<input>`, `<textarea>`, `<select>`), you will find pretty easy to couple it with any UI library. Or even just with some custom `CSS` if you go minimalist, as in our [Demo](#demo).
 
-
-# Demo
+## Demo
 
 Check a live demo at [formiga.afialapis.com](https://formiga.afialapis.com/demo).
 
@@ -56,23 +59,10 @@ Or run it locally with:
 ```
 
 
-# Install
-
-```
-  npm i formiga
-```
 
 # Getting started 
 
 Formiga provides just two hooks: `useForm` and `useInput`.
-
-`VForm` will be the parent element. It just renders a `form` element, and provide a couple of render props (`renderInputs` and `renderButtons`) so you can render the rest.
-
-Then, any input inside the Form that you want to be validated, must be wrapped within a `VInput` element.
-
-## Basic example
-
-Let's check a basic example ([try it at CodePen](https://codepen.io/afialapis/pen/KKwgNWK)):
 
 
 ```javascript
@@ -85,12 +75,10 @@ const FormigaForm = () => {
   const [age, _setAge]= useState('33') 
 
   const nameInput = useInput({
-    type: 'text',
     disallowedValues: ["John Not Doe"],
     inputFilter: 'latin'
   })
   const ageInput = useInput({
-    type: 'text',
     checkValue: (v) => !isNaN(v) && parseInt(v)>=18,
     inputFilter: 'int'
   })

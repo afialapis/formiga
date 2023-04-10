@@ -54,10 +54,11 @@
     "reset": "npm run --silent clean-all && rm -fr node_modules package-lock.json && npm i"
   },
   "devDependencies": {
-    "xeira": "^0.0.34"
+    "react-syntax-highlighter": "^15.5.0",
+    "xeira": "^0.0.39"
   },
   "dependencies": {
-    "react": "^16.13.1"
+    "react": ">=16.13.1"
   },
   "peerDependencies": {
     "react": ">=16.13.1"
