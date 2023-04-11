@@ -2,8 +2,6 @@
   "product": "package",
   "target": "both",
   "source_index": "./src/index.mjs",
-  "react": true,
-  "monorepo": false,
   "linter": "eslint",
   "transpile_folder": "./lib",
   "transpiler": "babel",
@@ -12,5 +10,6 @@
   "bundler": "rollup",
   "test_folder": "./test",
   "demo_mode": "auto",
-  "demo_demoer": "rollup"
+  "demo_demoer": "rollup",
+  "verbose": false
 }
