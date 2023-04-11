@@ -27,14 +27,14 @@ const useInput = (props) => {
   //
   // input Ref as callback
   //  
-  const inputRef = (node) => {
+  const inputRef = useCallback(node => {
     if (node!=null) {
       log_input(node, 'inputRef callback')
       
       validateInput(node)
       setInputNode(node)
     }
-  }
+  }, [validateInput])
   
   //
   // attach listeners on node mount
