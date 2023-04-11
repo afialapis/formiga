@@ -1,6 +1,6 @@
 {
   "name": "formiga",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "The simplest -yet effective- form validator for React",
   "keywords": [
     "js",
@@ -50,11 +50,11 @@
     "dist": "npm run --silent clean-dist && npx xeira bundle",
     "site": "npm run --silent clean-site && npx xeira site",
     "prepare": "npm run --silent clean-demo && npm run --silent lint && npm run --silent test && npm run --silent lib && npm run --silent dist && npm run --silent site",
-    "demo": "npm run --silent clean-demo && npx xeira demo",
+    "demo": "npm run --silent clean-demo && npx xeira demo --port=8001",
     "reset": "npm run --silent clean-all && rm -fr node_modules package-lock.json && npm i"
   },
   "devDependencies": {
-    "xeira": "^0.3.2"
+    "xeira": "^0.3.3"
   },
   "peerDependencies": {
     "react": "^16.13.1"
