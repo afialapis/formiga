@@ -1,6 +1,6 @@
 {
   "name": "formiga",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "The simplest -yet effective- form validator for React",
   "keywords": [
     "js",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/afialapis/formiga/issues"
   },
-  "homepage": "https://formiga.afialapis.com/",
+  "homepage": "https://www.afialapis.com/os/formiga",
   "files": [
     "lib",
     "dist",
@@ -54,7 +54,7 @@
     "reset": "npm run --silent clean-all && rm -fr node_modules package-lock.json && npm i"
   },
   "devDependencies": {
-    "xeira": "^0.3.3"
+    "xeira": "^0.3.26"
   },
   "peerDependencies": {
     "react": ">=16.13.1"

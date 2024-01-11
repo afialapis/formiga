@@ -1,4 +1,4 @@
-![Formiga logo](https://formiga.afialapis.com/logo.png)
+![Formiga logo](https://www.afialapis.com/os/formiga/logo.png)
 
 [![NPM Version](https://badge.fury.io/js/formiga.svg)](https://www.npmjs.com/package/formiga)
 [![NPM Downloads](https://img.shields.io/npm/dm/formiga.svg?style=flat)](https://www.npmjs.com/package/formiga)
@@ -47,7 +47,7 @@ Given `formiga` works with native HTML elements (`<form>`, `<input>`, `<textarea
 
 # Demo
 
-Check a live demo at [formiga.afialapis.com](https://formiga.afialapis.com/demo).
+Check a live demo at [afialapis.com/os/formiga/](https://www.afialapis.com/os/formiga/demo.html).
 
 Or run it locally with:
 
