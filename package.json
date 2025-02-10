@@ -1,6 +1,6 @@
 {
   "name": "formiga",
-  "version": "0.1.9",
+  "version": "1.0.0-beta.1",
   "description": "The simplest -yet effective- form validator for React",
   "keywords": [
     "js",
@@ -39,7 +39,7 @@
     "require": "./dist/formiga.cjs"
   },
   "scripts": {
-    "clean-demo": "rm -rf demo/dist",
+    "clean-demo": "rm -rf demo/dist && mkdir demo/dist && ln -s ../assets demo/dist/assets",
     "clean-lib": "rm -rf lib && mkdir lib",
     "clean-dist": "rm -rf dist && mkdir dist",
     "clean-site": "rm -rf arredemo",
@@ -54,11 +54,11 @@
     "reset": "npm run --silent clean-all && rm -fr node_modules package-lock.json && npm i"
   },
   "devDependencies": {
-    "xeira": "^0.3.26"
+    "xeira": "^1.0.0-beta.1"
   },
   "peerDependencies": {
-    "react": ">=16.13.1"
-  },
+    "react": "^18.3.1"
+  }, 
   "eslintConfig": {
     "extends": [
       "./node_modules/xeira/configs/eslint.react.cjs"

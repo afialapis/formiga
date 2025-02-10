@@ -1,6 +1,6 @@
 const React = require('react')
 const expect= global.expect
-const mount= global.mount
+const render= global.render
 
 describe('Forms', function () {
   this.timeout(100)
@@ -15,7 +15,7 @@ describe('Forms', function () {
       return (
         <div>
           <form ref = {form.ref}
-                id  = {fid}
+                data-testid  = {fid}
                 className= 'formiga-form'>
             <div/>
           </form>
@@ -23,14 +23,10 @@ describe('Forms', function () {
       )
     }
 
-    const wrapper= mount(<App/>)
+    const {getByTestId} = render(<App/>)
 
-    const theForm= wrapper.find(`form#${fid}`)
-    const theFormNode= theForm.getDOMNode()
+    const theForm= getByTestId(fid)
 
-    expect(theForm.length).to.equal(1)
-    expect(theFormNode.classList.contains('formiga-form')).to.equal(true)
-
-    wrapper.unmount()
+    expect(theForm.classList.contains('formiga-form')).to.equal(true)
   })  
 })

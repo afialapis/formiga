@@ -1,6 +1,6 @@
 const React = require('react')
 const expect= global.expect
-const mount= global.mount
+const render= global.render
 
 describe('Buttons', function () {
   this.timeout(100)
@@ -23,21 +23,19 @@ describe('Buttons', function () {
       return (
         <div>
           <form ref = {form.ref}>
-            <button id="test-btn-cancel">Cancel</button>
-            <button id="test-btn-save">Save</button>
+            <button data-testid="test-btn-cancel">Cancel</button>
+            <button data-testid="test-btn-save">Save</button>
           </form>
         </div>
       )
     }
-    const wrapper= mount(<App/>)
+    const {getByTestId} = render(<App/>)
 
-    const btnCancelNode= wrapper.find('button#test-btn-cancel').getDOMNode()
-    const btnSaveNode= wrapper.find('button#test-btn-save').getDOMNode()
+    const btnCancelNode= getByTestId('test-btn-cancel')
+    const btnSaveNode= getByTestId('test-btn-save')
 
     expect(btnCancelNode.innerHTML).to.equal('Cancel')
     expect(btnSaveNode.innerHTML).to.equal('Save')
-
-    wrapper.unmount()
   })  
 })
 

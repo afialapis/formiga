@@ -1,6 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import {createRoot} from 'react-dom/client'
 
 import DemoWithHeader from './src/DemoWithHeader'
 
-ReactDOM.render(<DemoWithHeader/>, document.getElementById('docaine_demo'))
+const container = document.getElementById('docaine_demo')
+const root = createRoot(container)
+root.render(<DemoWithHeader/>)
