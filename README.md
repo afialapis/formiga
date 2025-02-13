@@ -1,9 +1,26 @@
-![Formiga logo](https://www.afialapis.com/os/formiga/logo.png)
-
+# formiga
 [![NPM Version](https://badge.fury.io/js/formiga.svg)](https://www.npmjs.com/package/formiga)
 [![NPM Downloads](https://img.shields.io/npm/dm/formiga.svg?style=flat)](https://www.npmjs.com/package/formiga)
 
-The simplest -yet effective- form validator for React: stick to -and empower- web standards ([HTML5 Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation)) instead of ignore them.
+![Formiga logo](https://www.afialapis.com/os/formiga/logo.png)
+
+
+---
+
+> **[formiga](https://academia.gal/dicionario/-/termo/formiga)**. substantivo femenino:
+
+> **Pequeno insecto da orde dos himenópteros, polo xeral de cor negra, que vive en colonias moi numerosas organizadas en clases, e do que existen varias especies.**
+
+> _As formigas escavan complexas galerías subterráneas._
+
+
+---
+
+# Intro
+
+[`formiga`](https://www.afialapis.com/os/formiga) is the simplest -yet effective- form validator for `React`.
+
+Stick to -and empower- web standards ([HTML5 Constraint Validation API](https://developer.mozilla.org/en-US/docs/Web/API/Constraint_validation)) instead of ignore them.
 
 
 # Table of Contents
@@ -55,7 +72,6 @@ Or run it locally with:
   npm run demo
 ```
 
-
 # Install
 
 ```
@@ -89,30 +105,26 @@ const FormigaForm = () => {
     disallowedValues: ["John Not Doe"],
     inputFilter: 'latin'
   })
+
   const ageInput = useInput({
     type: 'text',
     checkValue: (v) => !isNaN(v) && parseInt(v)>=18,
     inputFilter: 'int'
   })
 
-
   const handleSubmit = () => {
     let resume= ''
-
     form.elements
       .map((el) => {
         resume+= `Input ${el.name} ${el.valid ? 'is' : 'is not'} valid\n`
       })
 
     console.log(resume)
-    //
     // Input name is valid
     // Input age is valid
   }
 
-
   return (  
-
     <form ref = {form.ref}>
         
       {/* A controlled input */}
@@ -129,8 +141,6 @@ const FormigaForm = () => {
              className = {ageInput.valid ? 'valid' : 'invalid'}
              required  = {true}
              defaultValue = {age}/>
-
-
       <button
              onClick  ={(_ev) => handleSubmit()}
              disabled = {! form.valid}>
@@ -138,9 +148,11 @@ const FormigaForm = () => {
       </button>
 
     </form>
-
   )
 }          
 
 ```
 
+# Changelog
+
+See [changelog here](https://github.com/afialapis/formiga/blob/main/CHANGELOG.md)
