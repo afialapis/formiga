@@ -121,7 +121,7 @@ const  _checkValidity = (input, transformValue, checkValue, allowedValues, disal
 
   // Allowed values list
   if ( (allowedValues != undefined) && (!isEmptyValue)) {
-    const parsedAlloValues= disallowedValues
+    const parsedAlloValues= allowedValues
       .map((v) => parseForCompare(inputType, v))
     const parsedValue = parseForCompare(inputType, value)
     const exists= parsedAlloValues.indexOf(parsedValue) >= 0
@@ -136,8 +136,9 @@ const  _checkValidity = (input, transformValue, checkValue, allowedValues, disal
     const parsedDisaValues= disallowedValues
       .map((v) => parseForCompare(inputType, v))
     const parsedValue = parseForCompare(inputType, value)
+    
     const exists= parsedDisaValues.indexOf(parsedValue) >= 0
-
+    
     if (exists) {
       return 'customDisallowList'
     }

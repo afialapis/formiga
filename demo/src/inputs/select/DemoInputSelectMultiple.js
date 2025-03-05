@@ -20,7 +20,7 @@ const DemoInputSelectMultiple = () => {
   const [times, setTimes]= useResetableValue(['3', '5', '7'], [])
 
   const input = useInput({
-    disallowedValues: [['1', '3', '5', '7'], []],
+    allowedValues: [['1', '3', '5', '7']],
     //checkValue: (v) => {console.log(`checking value ${typeof v}${v}`); return true}
   })
 
