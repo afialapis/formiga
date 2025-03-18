@@ -78,7 +78,7 @@ const useForm = () => {
 
 
   useEffect(() => {
-    log('form', `useEffect - ${formNode==undefined}`)
+    log('form', `useEffect - node is ${formNode==undefined ? 'pending' : 'assigned'}`)
   
     if (formNode==undefined) {
       return

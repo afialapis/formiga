@@ -1,4 +1,4 @@
-let LOG_ENABLED= false
+let LOG_ENABLED= true
 
 // try {
 //   if (process.env.NODE_ENV !== "production") {
@@ -19,7 +19,7 @@ const log = (w, s) => {
 
 const log_input = (inputNode, s) => {
   const msg= `${inputNode.name} (t: ${inputNode.type}, #${inputNode?.id || ''}, v: ${inputNode.value.toString()}) => ${s}`
-  log('input', msg)
+  //log('input', msg)
 }
 
 export {log, log_input}
