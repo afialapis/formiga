@@ -1,4 +1,4 @@
-let LOG_ENABLED= true
+let LOG_ENABLED= false
 
 // try {
 //   if (process.env.NODE_ENV !== "production") {
