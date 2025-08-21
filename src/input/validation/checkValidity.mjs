@@ -177,12 +177,13 @@ const  _checkValidity = (input, transformValue, checkValue, allowedValues, disal
 const  checkValidity = (input, {transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, validationMessage}) => {
   const chkValidity= _checkValidity(input, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals)
     
-  const nValidity= chkValidity==''
+  const nValidity= (chkValidity=='')
               ? ''
-              : validationMessage!=undefined
+              : ( (validationMessage!=undefined) && (validationMessage!='') )
                 ? validationMessage 
                 : getDefaultMessage(chkValidity)
 
+  console.log(`${input?.type || '?'} ${input?.name || '?'} ${validationMessage} == ${chkValidity} ${nValidity}`)
   return nValidity
 
 }
