@@ -23,7 +23,7 @@ const DemoInputSelectSimple = () => {
     <DemoInputGroup 
       label       = {"What do you think about Formiga?"}
       description = ""
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
 
       <select ref          = {input.ref}
               name         = {'experience'}

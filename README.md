@@ -153,6 +153,53 @@ const FormigaForm = () => {
 
 ```
 
+# API
+
+## `useForm()`
+
+`const {ref, node, valid, hasChanged, elements} = useForm()`
+
+· `ref`: React ref for the <form> element you will render
+· `node`: the form DOM node element
+· `valid`: a boolean indicating if every field in the form is valid
+· `hasChanged`: a boolean indicating if any field in the form has changed
+· `elements`: an array of objects containing the form elements, where each elemet is like:
+- `name`: the name of the element
+- `type`: the type of the element
+- `valid`: a boolean indicating if the element is valid
+- `validationMessage`: the validation message of the element
+- `value`: the value of the element
+- `originalValue`: the original value of the element
+- `hasChanged`: a boolean indicating if the element has changed
+
+
+## `useInput()`
+
+`const {ref, node, valid, validationMessage, validate, setValue, setValidationMessage, dispatchEvent, originalValue} = useInput(props)`
+
+· `ref`: React ref for the <input> element you will render
+· `node`: the input DOM node element
+· `valid`: a boolean indicating if the element is valid
+· `validationMessage`: the validation message of the element
+· `validate`: a function to validate the element
+· `setValue`: a function to set the value of the element
+· `setValidationMessage`: a function to set the validation message of the element
+· `dispatchEvent`: a function to dispatch an event on the element
+· `originalValue`: the original value of the element
+
+## properties
+
+· `originalValue`: the original value of the element. `formiga` will catch the input's value on first render, but depending on your component's rendering cycle, you may need several renders to have your component ready. In that cases, you need to force `originalValue`.
+· `transformValue`: a function to transform the input's value before validation.
+· `checkValue`: a function to perform some custom validation on the input's value.
+· `allowedValues`: an array of values that the input's value must be in.
+· `disallowedValues`: an array of values that the input's value must not be in.
+· `doRepeat`: the name of the input that the input's value must be equal to.
+· `doNotRepeat`: the name of the input that the input's value must not be equal to.
+· `decimals`: the number of decimals the input's value must have.
+· `validationMessage`: the message to show when the input is invalid.
+· `inputFilter`: the type of input filter to apply to the input's value.
+
 # Changelog
 
 See [changelog here](https://github.com/afialapis/formiga/blob/main/CHANGELOG.md)

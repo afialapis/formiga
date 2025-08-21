@@ -28,7 +28,7 @@ const getInputValue = (input) => {
     try {
       return input?.files[0]
     } catch(e) {
-      console.error(`Formiga: error on input ${input.name} of type file: ${e.feedback}`)
+      console.error(`Formiga: error on input ${input.name} of type file: ${e.message}`)
       console.error(e)
       return undefined
     }

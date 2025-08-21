@@ -18,7 +18,7 @@ const DemoInputTextWords = () => {
     <DemoInputGroup
       label       = {"Your experience with Formiga in two words"}
       description = {`Optional. Max length 20 (currently ${words ? words.length : 0})`}
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
       <input ref          = {input.ref}
               name         = {'words'}
               className    = {input.valid ? 'valid' : 'invalid'}

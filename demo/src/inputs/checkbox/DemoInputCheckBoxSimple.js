@@ -17,7 +17,7 @@ const DemoInputCheckBoxSimple = () => {
     <DemoInputGroup 
       label       = {"Do you like Formiga?"}
       description = "You can be honest ;)"
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
       <input ref       = {input.ref}
              type      = "checkbox"
              name      = {'like'}

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const DemoInputGroup = ({children, label, feedback, description}) => {
+const DemoInputGroup = ({children, label, validationMessage, description}) => {
 
   return (
     <div className="formiga-input-group">
@@ -18,8 +18,8 @@ const DemoInputGroup = ({children, label, feedback, description}) => {
 
 
       {children}
-      <div className="formiga-input-feedback">
-        {feedback}
+      <div className="formiga-input-validation-message">
+        {validationMessage}
       </div>
     </div>        
   )

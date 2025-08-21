@@ -13,7 +13,7 @@ const DemoInputNumberFloatStep = () => {
     <DemoInputGroup 
       label       = {"And how much weight does Farmiga can carry (in grams)?"}
       description = {"Required. Some float (max 2 decimals, native step = 0.01)."}
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
       
       <input  ref       = {input.ref}
               type      = "number"

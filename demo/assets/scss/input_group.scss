@@ -49,15 +49,15 @@
   select.invalid {
     border-color: red;
   }
-  .formiga-input-feedback {
+  .formiga-input-validation-message {
     color: red;
     font-style: italic;
     font-size: 0.8em;
   }
 
-  input.valid > .formiga-input-feedback,
-  textarea.valid > .formiga-input-feedback,
-  select.valid > .formiga-input-feedback {
+  input.valid > .formiga-input-validation-message,
+  textarea.valid > .formiga-input-validation-message,
+  select.valid > .formiga-input-validation-message {
     display: none;
   }
 }

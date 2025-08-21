@@ -13,7 +13,7 @@ const DemoInputFileSimple = () => {
     <DemoInputGroup 
       label       = {"Put some file here; Formiga's strength will upload it"}
       description = ""
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
       <input ref       = {input.ref}
              type      = "file"
              name      = {'id_card'}

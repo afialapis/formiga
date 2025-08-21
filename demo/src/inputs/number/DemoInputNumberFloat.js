@@ -20,7 +20,7 @@ const DemoInputNumberFloat = () => {
     <DemoInputGroup 
       label       = {"How much Formiga weights (in milligrams)?"}
       description = {"Required. Some float (max 3 decimals, decimals = 3)."}
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
       
       <input  ref       = {input.ref}
               type      = "number"

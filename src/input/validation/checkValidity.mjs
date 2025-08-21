@@ -174,13 +174,13 @@ const  _checkValidity = (input, transformValue, checkValue, allowedValues, disal
   return ''
 }  
 
-const  checkValidity = (input, {transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, feedback}) => {
+const  checkValidity = (input, {transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, validationMessage}) => {
   const chkValidity= _checkValidity(input, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals)
     
   const nValidity= chkValidity==''
               ? ''
-              : feedback!=undefined
-                ? feedback 
+              : validationMessage!=undefined
+                ? validationMessage 
                 : getDefaultMessage(chkValidity)
 
   return nValidity

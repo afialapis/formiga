@@ -8,7 +8,7 @@ const DemoInputColorSimple = () => {
   const input = useInput({
     type: 'color',
     disallowedValues: ['#000000', '#FFFFFF', '#ffffff'],
-    feedback: 'Neither black nor white'
+    validationMessage: 'Neither black nor white'
   })
 
   const [color, setColor]= useResetableValue('#FF00FF', '#000000')
@@ -21,7 +21,7 @@ const DemoInputColorSimple = () => {
     <DemoInputGroup 
       label       = {"What color reminds you Formiga to?"}
       description = "Neither black nor white!"
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
       <input ref         = {input.ref}
               type        = "color"
               name        = {'color'}

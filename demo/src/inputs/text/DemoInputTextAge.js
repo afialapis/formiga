@@ -17,7 +17,7 @@ const DemoInputTextAge = () => {
     <DemoInputGroup 
       label       = {"Your age here"}
       description = {"Required. Uncontrolled. Some >18 integer (through inputFilter)"}
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
       <input  ref       = {input.ref}
               name      = {'age'}
               className = {input.valid ? 'valid' : 'invalid'}

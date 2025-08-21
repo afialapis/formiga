@@ -38,7 +38,7 @@ const DemoInputSelectMultiple = () => {
     <DemoInputGroup 
       label       = {"What times you prefer to code with Formiga?"}
       description = "All even hours required"
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
 
       <select ref          = {input.ref}
               name         = {'times'}

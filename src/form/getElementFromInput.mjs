@@ -7,17 +7,17 @@ export default (node) => {
   const validationMessage= node.validationMessage
   const value = getInputValue(node)
   const valid = validationMessage==''
-  let defaultValue = node.getAttribute('data-formiga-default-value')
-  if (defaultValue == 'undefined') {
-    defaultValue = undefined
-  } else if (defaultValue == 'null') {
-    defaultValue = null
-  } else if (defaultValue == 'true') {
-    defaultValue = true
-  } else if (defaultValue == 'false') {
-    defaultValue = false
+  let originalValue = node.getAttribute('data-formiga-original-value')
+  if (originalValue == 'undefined') {
+    originalValue = undefined
+  } else if (originalValue == 'null') {
+    originalValue = null
+  } else if (originalValue == 'true') {
+    originalValue = true
+  } else if (originalValue == 'false') {
+    originalValue = false
   } else if (type === 'select-multiple') {
-    defaultValue =  defaultValue.split(',')
+    originalValue =  originalValue.split(',')
   }
 
   return {
@@ -26,7 +26,7 @@ export default (node) => {
     valid,
     validationMessage, 
     value,
-    defaultValue,
-    hasChanged: parseForCompare(type, value) !== parseForCompare(type, defaultValue)
+    originalValue,
+    hasChanged: parseForCompare(type, value) !== parseForCompare(type, originalValue)
   }  
 }

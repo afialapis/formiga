@@ -10,7 +10,7 @@ const DemoInputNumberInt = () => {
   const input = useInput({
     decimals: 1,
     checkValue: (v) => (v==6) || isNaN(v),
-    feedback: 'Hey folk, look closer to our precious icon!'
+    validationMessage: 'Hey folk, look closer to our precious icon!'
   })
 
 
@@ -23,7 +23,7 @@ const DemoInputNumberInt = () => {
     <DemoInputGroup 
       label       = {"How many paws does Formiga have?"}
       description = {"Optional. An =6 integer. Decimals allowed but invalid (decimals=1)."}
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
       <input  ref       = {input.ref}
               type      = "number"
               name      = {'paws'}

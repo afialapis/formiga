@@ -10,14 +10,14 @@ const DemoInputTextName = () => {
     type: 'text',
     disallowedValues: ["John Doe"],
     inputFilter: 'latin',
-    feedback: "'John Doe' is disallowed"
+    validationMessage: "'John Doe' is disallowed"
   })
   
   return (
     <DemoInputGroup 
       label       = {"Your name here"}
       description = {"Required. 'John Doe' is disallowed. Latin chars."}
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
       <input ref       = {input.ref}
               name      = {'name'}
               className = {input.valid ? 'valid' : 'invalid'}

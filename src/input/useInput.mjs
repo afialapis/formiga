@@ -4,26 +4,26 @@ import useCheckProps from './checkers/useCheckProps.mjs'
 import useInputFilter from './inputFilter/useInputFilter.mjs'
 import useCheckboxEnsure from './ensurers/useCheckboxEnsure.mjs'
 import checkValidity from './validation/checkValidity.mjs'
-import setCustomValidity from './events/setCustomValidity.mjs'
+import setCustomValidationMessage from './events/setCustomValidationMessage.mjs'
 import attachInputValidationListener from './events/attachInputValidationListener.mjs'
 import getInputValue from './config/getInputValue.mjs'
 
 const useInput = (props) => {
     
   const [inputNode, setInputNode]= useState(undefined)
-  const [validity, setValidity]= useState('')
-  const defaultValue = useRef()
+  const [validationMessage, setValidationMessage]= useState('')
+  const originalValue = useRef(props.originalValue)
 
   //
   // validate input callback
   //
   const validateInput = useCallback((node) => {
-    const nValidity= checkValidity(node, props)
-    log_input(node, `input validated to [${nValidity}]`)
-    setValidity(nValidity)
-    setCustomValidity(node, nValidity, props.transformValue)
+    const nValidationMessage= checkValidity(node, props)
+    log_input(node, `input validated to [${nValidationMessage}]`)
+    setValidationMessage(nValidationMessage)
+    setCustomValidationMessage(node, nValidationMessage, props.transformValue)
     
-    return nValidity
+    return nValidationMessage
   }, [props])
 
   //
@@ -38,13 +38,15 @@ const useInput = (props) => {
       validateInput(node)
       setInputNode(node)
 
-      if (defaultValue.current === undefined) {
-        const defValue = getInputValue(node)
-        defaultValue.current = defValue
-        node.setAttribute('data-formiga-default-value', defaultValue.current)
+      if (originalValue.current === undefined) {
+        const defValue = props?.originalValue!==undefined
+          ? props.originalValue
+          : getInputValue(node)
+        originalValue.current = defValue
+        node.setAttribute('data-formiga-original-value', originalValue.current)
       }
     }
-  }, [validateInput])
+  }, [validateInput, props.originalValue])
 
   //
   // attach listeners on node mount
@@ -87,22 +89,22 @@ const useInput = (props) => {
     }
   }, [inputNode])
 
-  const forceSetValidity = useCallback((nValidity) => {
+  const forceSetValidationMessage = useCallback((nValidationMessage) => {
     if (inputNode!=undefined) {
-      setValidity(nValidity)
-      setCustomValidity(inputNode, nValidity, props.transformValue)
+      setValidationMessage(nValidationMessage)
+      setCustomValidationMessage(inputNode, nValidationMessage, props.transformValue)
     }
   }, [inputNode, props.transformValue])
   
-  const dispatchEvent = useCallback((type, props) => {
+  const dispatchEvent = useCallback((type, ev_props) => {
     if (inputNode==undefined) {
       return
     }
     const inputEvent = new Event(type, {
-      bubbles: props?.bubbles || true,
-      cancelable: props?.cancelable || true,
-      view: props?.view || window,
-      detail: props?.detail || props?.data || {}
+      bubbles: ev_props?.bubbles || true,
+      cancelable: ev_props?.cancelable || true,
+      view: ev_props?.view || window,
+      detail: ev_props?.detail || ev_props?.data || {}
     })
     inputNode.dispatchEvent(inputEvent)
 
@@ -116,13 +118,13 @@ const useInput = (props) => {
   return {
     ref: inputRef,
     node: inputNode,
-    valid: validity==='', 
-    feedback: validity, 
+    valid: validationMessage==='', 
+    validationMessage, 
     validate,
     setValue,
-    setValidity: forceSetValidity,
+    setValidationMessage: forceSetValidationMessage,
     dispatchEvent,
-    defaultValue: defaultValue.current
+    originalValue: originalValue.current
   }
 }
 

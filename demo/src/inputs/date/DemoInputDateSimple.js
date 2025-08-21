@@ -28,7 +28,7 @@ const DemoInputDateSimple = () => {
     <DemoInputGroup 
       label       = {"When did you last see Formiga?"}
       description = "Required. Just yesterday is disallowed."
-      feedback    = {input.feedback}>
+      validationMessage    = {input.validationMessage}>
       <input ref          = {input.ref}
              type         = "date"
              name         = {'when'}

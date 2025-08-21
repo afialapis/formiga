@@ -15,8 +15,16 @@ import '../assets/scss/index.scss'
 const _getResumeFromFormElements = (elements) => {
   const resume= []
   elements.map(el => {
+    let value = ''
+    try {
+      if ((typeof el.value == 'object') && (el.value?.name)) {
+        value = el.value.name
+      } else {
+        value = el.value.toString()
+      }
+    } catch(e) { }
     resume.push({msg: `${el.name}${el.hasChanged ? ' *' : ''}`, style:  {marginTop: '1em', fontWeight: 'bold'}})
-    resume.push({msg: el.value, style: {fontStyle: 'italic', ...el.hasChanged ? {color: 'blue'} : {}}})
+    resume.push({msg: value, style: {fontStyle: 'italic', ...el.hasChanged ? {color: 'blue'} : {}}})
     resume.push({msg: `is ${el.valid ? 'valid!' : `invalid (${el.validationMessage})`}`, 
               style: {color: el.valid ? 'green' : 'red'}})
   })
