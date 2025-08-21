@@ -12,7 +12,7 @@ const useInput = (props) => {
     
   const [inputNode, setInputNode]= useState(undefined)
   const [validationMessage, setValidationMessage]= useState('')
-  const originalValue = useRef(props.originalValue)
+  const originalValue = useRef()
 
   //
   // validate input callback
