@@ -170,7 +170,7 @@ const FormigaForm = () => {
 - `validationMessage`: the validation message of the element
 - `value`: the value of the element
 - `originalValue`: the original value of the element
-- `hasChanged`: a boolean indicating if the element has changed
+- `hasChanged`: a boolean indicating if any of the element's value has changed
 
 
 ## `useInput()`
@@ -186,6 +186,7 @@ const FormigaForm = () => {
 · `setValidationMessage`: a function to set the validation message of the element
 · `dispatchEvent`: a function to dispatch an event on the element
 · `originalValue`: the original value of the element
+· `hasChanged`: a boolean indicating if the element's value has changed
 
 ## properties
 

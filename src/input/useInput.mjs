@@ -128,7 +128,10 @@ const useInput = (props) => {
     setValue,
     setValidationMessage: forceSetValidationMessage,
     dispatchEvent,
-    originalValue: originalValue.current
+    originalValue: originalValue.current,
+    hasChanged: ( (inputNode!==undefined) && (originalValue.current!==undefined) )
+      ? inputNode.value!==originalValue.current 
+      : false
   }
 }
 
