@@ -1,4 +1,4 @@
-import {useState, useCallback, useEffect} from 'react'
+import {useState, useCallback, useEffect, useRef} from 'react'
 import {log_input} from '../helpers/log.mjs'
 import useCheckProps from './checkers/useCheckProps.mjs'
 import useInputFilter from './inputFilter/useInputFilter.mjs'
@@ -6,11 +6,13 @@ import useCheckboxEnsure from './ensurers/useCheckboxEnsure.mjs'
 import checkValidity from './validation/checkValidity.mjs'
 import setCustomValidity from './events/setCustomValidity.mjs'
 import attachInputValidationListener from './events/attachInputValidationListener.mjs'
+import getInputValue from './config/getInputValue.mjs'
 
 const useInput = (props) => {
     
   const [inputNode, setInputNode]= useState(undefined)
   const [validity, setValidity]= useState('')
+  const defaultValue = useRef()
 
   //
   // validate input callback
@@ -30,12 +32,17 @@ const useInput = (props) => {
   const inputRef = useCallback(node => {
     if (node!=null) {
       log_input(node, 'inputRef callback')
-      
+
       validateInput(node)
       setInputNode(node)
+
+      if (defaultValue.current === undefined) {
+        defaultValue.current = getInputValue(node)
+        node.setAttribute('data-formiga-default-value', defaultValue.current)
+      }
     }
   }, [validateInput])
-  
+
   //
   // attach listeners on node mount
   //  
@@ -111,7 +118,8 @@ const useInput = (props) => {
     validate,
     setValue,
     setValidity: forceSetValidity,
-    dispatchEvent
+    dispatchEvent,
+    defaultValue: defaultValue.current
   }
 }
 

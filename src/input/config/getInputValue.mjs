@@ -13,10 +13,14 @@ const getInputValue = (input) => {
   }
 
   if (inputType=='select-multiple') {
-    const options= Array.prototype.slice.call(input.options)
-    const value = options 
-                  .filter((opt) => opt.selected)
-                  .map((opt) => opt.value)
+    // const options= Array.prototype.slice.call(input.options)
+    // const value = options 
+    //               .filter((opt) => opt.selected)
+    //               .map((opt) => opt.value)
+    const options = Array.from(input.options);
+    const value = options
+      .filter((opt) => opt.selected)
+      .map((opt) => opt.value);                  
     return value
   }
 

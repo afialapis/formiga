@@ -17,13 +17,16 @@ const _getFormElements = (node) => {
     const feedback= el.getAttribute('data-formiga-validity') || ''
     const value= el.getAttribute('data-formiga-value') || ''
     const valid = feedback==''
+    const defaultValue = el.getAttribute('data-formiga-default-value')
 
     elements.push({
       name,
       type,
       valid,
       feedback, 
-      value
+      value,
+      defaultValue,
+      hasChanged: value !== defaultValue
     })
   } 
 
