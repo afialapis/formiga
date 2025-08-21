@@ -2,6 +2,9 @@ const parseForCompare = (inputType, value) => {
   if (value===undefined) {
     return undefined
   }
+  if (value===null) {
+    return null
+  }
 
   inputType= inputType.toLowerCase()
 
