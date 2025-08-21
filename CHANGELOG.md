@@ -1,4 +1,4 @@
-# 1.7.0
+# 1.8.0
 
 · Reviewed and empowered both `useForm` and `useInput`
 
