@@ -41,7 +41,11 @@ const useInput = (props) => {
       if (originalValue.current === undefined) {
         const defValue = props?.originalValue!==undefined
           ? props.originalValue
-          : getInputValue(node)
+          : (node.type=='file')
+            ? (node.files.length>0)
+              ? node.files[0].name
+              : undefined
+            : getInputValue(node)
         originalValue.current = defValue
         node.setAttribute('data-formiga-original-value', originalValue.current)
       }

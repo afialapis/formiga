@@ -32,14 +32,7 @@ const setCustomValidationMessage = (node, validationMessage, transformValue) => 
         log_input(node, `setCustomValidity( ${validationMessage || 'ok'} ) ... dispatching formiga-form-change`)
 
         const event = new CustomEvent("formiga-form-change", {
-          /*detail: {
-            name    : node.name,
-            type    : node.type,
-            validity: validity,
-            valid   : validity=='',
-            value   : value
-          }*/
-          detail: {source: node} // element
+          detail: {source: node}
         });
         node.form.dispatchEvent(event)
       }

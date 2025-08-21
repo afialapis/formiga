@@ -20,6 +20,16 @@ export default (node) => {
     originalValue =  originalValue.split(',')
   }
 
+  const valueCompare = (type === 'file')
+    ? node.files.length>0
+      ? node.files[0].name
+      : undefined
+    : parseForCompare(type, value)
+  
+  const originalCompare = (type === 'file')
+    ? originalValue
+    : parseForCompare(type, originalValue)
+
   return {
     name,
     type,
@@ -27,6 +37,6 @@ export default (node) => {
     validationMessage, 
     value,
     originalValue,
-    hasChanged: parseForCompare(type, value) !== parseForCompare(type, originalValue)
+    hasChanged: valueCompare !== originalCompare
   }  
 }

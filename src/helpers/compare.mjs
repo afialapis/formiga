@@ -27,6 +27,12 @@ const parseForCompare = (inputType, value) => {
     return false    
   }
 
+  if (inputType === 'color') {
+    if (value) {
+      return value.toLowerCase()
+    }
+  }  
+
   /*
   if (inputType==='color') {
     if (value===undefined || value==='') {
