@@ -33,6 +33,8 @@ const useInput = (props) => {
     if (node!=null) {
       log_input(node, 'inputRef callback')
 
+      node.setAttribute('data-formiga-input', '1')
+
       validateInput(node)
       setInputNode(node)
 
