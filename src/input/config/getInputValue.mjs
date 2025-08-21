@@ -26,7 +26,7 @@ const getInputValue = (input) => {
 
   if (inputType=='file') {
     try {
-      return input.files[0]
+      return input?.files[0]
     } catch(e) {
       console.error(`Formiga: error on input ${input.name} of type file: ${e.feedback}`)
       console.error(e)

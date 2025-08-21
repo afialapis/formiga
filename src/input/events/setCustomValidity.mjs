@@ -1,3 +1,4 @@
+//import getElementFromInput from '../../form/getElementFromInput.mjs'
 import {log_input} from '../../helpers/log.mjs'
 import getInputValue from '../config/getInputValue.mjs'
 
@@ -31,13 +32,14 @@ const setCustomValidity = (node, validity, transformValue) => {
         log_input(node, `setCustomValidity( ${validity || 'ok'} ) ... dispatching formiga-form-change`)
 
         const event = new CustomEvent("formiga-form-change", {
-          detail: {
+          /*detail: {
             name    : node.name,
             type    : node.type,
             validity: validity,
             valid   : validity=='',
             value   : value
-          }
+          }*/
+          detail: {source: node} // element
         });
         node.form.dispatchEvent(event)
       }

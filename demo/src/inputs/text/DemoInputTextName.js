@@ -9,7 +9,8 @@ const DemoInputTextName = () => {
   const input = useInput({
     type: 'text',
     disallowedValues: ["John Doe"],
-    inputFilter: 'latin'
+    inputFilter: 'latin',
+    feedback: "'John Doe' is disallowed"
   })
   
   return (

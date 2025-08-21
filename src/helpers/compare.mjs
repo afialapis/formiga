@@ -5,7 +5,7 @@ const parseForCompare = (inputType, value) => {
 
   inputType= inputType.toLowerCase()
 
-  if (inputType==='text' || inputType==='select') {
+  if (inputType==='text' || inputType==='select' || inputType==='select-one') {
     return value.toString()
   }
   

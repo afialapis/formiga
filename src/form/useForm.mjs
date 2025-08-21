@@ -1,64 +1,19 @@
 import {useState, useEffect, useCallback} from 'react'
 import attachFormValidationListener from './attachFormValidationListener.mjs'
+import getFormElementsFromNode from './getFormElementsFromNode.mjs'
+import getElementFromInput from './getElementFromInput.mjs'
 import {log} from '../helpers/log.mjs'
 
-const _getFormElements = (node) => {
-  const formElements= node?.elements
-  if (! formElements) {
-    return []
-  }
-
-  let elements= []
-  for (let idx = 0; idx < formElements.length; idx++) {
-    const el= formElements.item(idx)
-
-    const name = el.name
-    const type = el.type || el.getAttribute('type')
-    const feedback= el.getAttribute('data-formiga-validity') || ''
-    const value= el.getAttribute('data-formiga-value') || ''
-    const valid = feedback==''
-    const defaultValue = el.getAttribute('data-formiga-default-value')
-
-    elements.push({
-      name,
-      type,
-      valid,
-      feedback, 
-      value,
-      defaultValue,
-      hasChanged: value !== defaultValue
-    })
-  } 
-
-  elements.sort((a,b) => a.name - b.name)
-  
-  return elements
-}
-
-const _areAllValid = (elements) => {
-  for (const e of elements) {
-    if (!e.valid) {
-      return false
-    }
-  }
-  return true
-}
-
 const useForm = () => {
-
   const [formNode, setFormNode]= useState(undefined)
   const [elements, setElements] = useState([])
-  const [valid, setValid] = useState(true)
 
-  const updateForm = useCallback((node) => {
-    log('form', `updateForm callback (${node?.elements?.length} inputs)`)
-    let nElements = _getFormElements(node)
-    setElements(nElements)
-    setValid(_areAllValid(nElements))
-  }, [])
-
+  //
+  // Ref callback
+  //   Inits the elements array
+  //
   const formRef = useCallback(node => {
-    log('form', `formRef callback`)
+    log('form', `formRef callback...`)
 
     if (node!=null) {
       try {
@@ -72,12 +27,27 @@ const useForm = () => {
       } catch(e) {
         console.error(e)
       }
-      
-      
-      updateForm(node)
+
       setFormNode(node)
+
+      // Init elements
+      let nElements = getFormElementsFromNode(node)
+      setElements(nElements)
     }
-  }, [updateForm])
+  }, [])
+
+  
+  const updateForm = useCallback((source) => {
+    log('form', `updateForm callback. Changed input: ${source?.name}`)
+    setElements((prevElements) => {
+      return prevElements.map(el => {
+        if (el.name==source?.name) {
+          return getElementFromInput(source)
+        }
+        return el
+      })
+    })
+  }, [])  
 
 
   useEffect(() => {
@@ -86,20 +56,23 @@ const useForm = () => {
     if (formNode==undefined) {
       return
     }
-
+    log('form', `useEffect - attaching listeners to formiga-form-change` )
     const removeAllChangeListeners = attachFormValidationListener(formNode, updateForm)
     return removeAllChangeListeners  
   
   }, [formNode, updateForm])
 
+  const valid = !elements.some(el => !el.valid)
+  const changedElems = JSON.stringify(elements.filter(el => el.hasChanged===true))
+  const hasChanged = elements.some(el => (el.hasChanged===true))
 
-
-  log('form', `Render, node is ${formNode==undefined ? 'pending' : 'assigned'}, valid is ${valid}`)
+  log('form', `Render, node is ${formNode==undefined ? 'pending' : 'assigned'}, valid is ${valid}, hasChanged is ${hasChanged} -- ${changedElems}`)
   
   return {
     ref: formRef,
     node: formNode,
     valid,
+    hasChanged,
     elements
   }
 }

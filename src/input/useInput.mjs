@@ -37,7 +37,8 @@ const useInput = (props) => {
       setInputNode(node)
 
       if (defaultValue.current === undefined) {
-        defaultValue.current = getInputValue(node)
+        const defValue = getInputValue(node)
+        defaultValue.current = defValue
         node.setAttribute('data-formiga-default-value', defaultValue.current)
       }
     }
