@@ -126,7 +126,9 @@ const useInput = (props) => {
   const hasChangedOriginal = ( (inputNode!==undefined) && (originalValue.current!==undefined) )
     ? inputNode.value!==originalValue.current 
     : false
-  const hasChngedMark = inputNode.getAttribute('data-formiga-changed')=='1'
+  const hasChngedMark = (inputNode!==undefined)
+    ? inputNode.getAttribute('data-formiga-changed')=='1'
+    : false
 
   return {
     ref: inputRef,
