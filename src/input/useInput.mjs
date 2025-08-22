@@ -17,11 +17,15 @@ const useInput = (props) => {
   //
   // validate input callback
   //
-  const validateInput = useCallback((node) => {
+  const validateInput = useCallback((node, markAdChanged= true) => {
     const nValidationMessage= checkValidity(node, props)
     log_input(node, `input validated to [${nValidationMessage}]`)
     setValidationMessage(nValidationMessage)
     setCustomValidationMessage(node, nValidationMessage, props.transformValue)
+
+    if (markAdChanged) {
+      node.setAttribute('data-formiga-changed', '1')
+    }
     
     return nValidationMessage
   }, [props])
@@ -35,7 +39,7 @@ const useInput = (props) => {
 
       node.setAttribute('data-formiga-input', '1')
 
-      validateInput(node)
+      validateInput(node, false)
       setInputNode(node)
 
       if (originalValue.current === undefined) {
@@ -119,6 +123,11 @@ const useInput = (props) => {
     log_input(inputNode, 'render')
   }
 
+  const hasChangedOriginal = ( (inputNode!==undefined) && (originalValue.current!==undefined) )
+    ? inputNode.value!==originalValue.current 
+    : false
+  const hasChngedMark = inputNode.getAttribute('data-formiga-changed')=='1'
+
   return {
     ref: inputRef,
     node: inputNode,
@@ -129,9 +138,7 @@ const useInput = (props) => {
     setValidationMessage: forceSetValidationMessage,
     dispatchEvent,
     originalValue: originalValue.current,
-    hasChanged: ( (inputNode!==undefined) && (originalValue.current!==undefined) )
-      ? inputNode.value!==originalValue.current 
-      : false
+    hasChanged: hasChangedOriginal || hasChngedMark
   }
 }
 
