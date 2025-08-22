@@ -182,8 +182,6 @@ const  checkValidity = (input, {transformValue, checkValue, allowedValues, disal
               : ( (validationMessage!=undefined) && (validationMessage!='') )
                 ? validationMessage 
                 : getDefaultMessage(chkValidity)
-
-  console.log(`${input?.type || '?'} ${input?.name || '?'} ${validationMessage} == ${chkValidity} ${nValidity}`)
   return nValidity
 
 }
