@@ -1,4 +1,4 @@
-//import {log} from '../helpers/log'
+import {log} from '../../helpers/log'
 import {parseForCompare} from '../../helpers/compare.mjs'
 import getDefaultMessage from '../config/getDefaultMessage.mjs'
 import getInputValue from '../config/getInputValue.mjs'
@@ -10,7 +10,7 @@ const countDecimals = (f) => {
       return parseInt(s.split('-')[1])
     }
     return f.toString().split('.')[1].length
-  } catch(e) {
+  } catch(_) {
     return 0
   }
 }
@@ -45,7 +45,7 @@ const  _checkValidity = (input, transformValue, checkValue, allowedValues, disal
         ? value.length==0
         : false
 
-  //log('input', `${input.name} (${input.type}) #${input.id} checkValidity() checking...`)
+  log('input', `${input.name} (${input.type}) #${input.id} checkValidity() checking...`)
   
   const vs= input.validity
   if (vs!=undefined) {
@@ -172,7 +172,7 @@ const  _checkValidity = (input, transformValue, checkValue, allowedValues, disal
     }
   }
   return ''
-}  
+}
 
 const  checkValidity = (input, {transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals, validationMessage}) => {
   const chkValidity= _checkValidity(input, transformValue, checkValue, allowedValues, disallowedValues, doRepeat, doNotRepeat, decimals)

@@ -53,7 +53,7 @@ const useInputFilter = (inputRef, inputFilter ) => {
         event.target.value = event.target.oldValue
         try {
           event.target.setSelectionRange(selectionStart-1, selectionEnd-1)
-        } catch(e) {}
+        } catch(_) {}
       } else {
         event.target.value = ""
       }

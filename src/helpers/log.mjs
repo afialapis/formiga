@@ -14,9 +14,9 @@ const log = (w, s) => {
 }
 
 const log_input = (inputNode, s) => {
-  // const value = (inputNode?.value || inputNode?.checked)?.toString() || ''
-  // const msg= `${inputNode.name} (t: ${inputNode.type}, #${inputNode?.id || ''}, v: ${value}) => ${s}`
-  // log('input', msg)
+  const value = (inputNode?.value || inputNode?.checked)?.toString() || ''
+  const msg= `${inputNode.name} (t: ${inputNode.type}, #${inputNode?.id || ''}, v: ${value}) => ${s}`
+  log('input', msg)
 }
 
 export {log, log_input}

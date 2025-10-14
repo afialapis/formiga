@@ -69,7 +69,7 @@ const parseForCompare = (inputType, value) => {
   if (inputType==='select-multiple') {
     try {
       return value.sort().join(',')
-    } catch(e) {}
+    } catch(_) {}
     return ''
   }
 
