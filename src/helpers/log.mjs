@@ -2,7 +2,9 @@ const log = (w, s) => {
   if (typeof window === 'undefined') {
     return
   }
-  const enabled = localStorage.getItem('formiga-debug')
+  const enabled = typeof localStorage !== 'undefined'
+    ? localStorage.getItem('formiga-debug')
+    : false
   if (enabled !== 'true') {
     return
   }
