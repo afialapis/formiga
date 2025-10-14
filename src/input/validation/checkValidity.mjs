@@ -1,4 +1,4 @@
-import {log} from '../../helpers/log'
+import {log} from '../../helpers/log.mjs'
 import {parseForCompare} from '../../helpers/compare.mjs'
 import getDefaultMessage from '../config/getDefaultMessage.mjs'
 import getInputValue from '../config/getInputValue.mjs'
