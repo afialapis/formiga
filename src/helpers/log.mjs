@@ -1,13 +1,9 @@
-let LOG_ENABLED= false
-
-// try {
-//   if (process.env.NODE_ENV !== "production") {
-//     LOG_ENABLED= true
-//   }
-// } catch(_){}
-
 const log = (w, s) => {
-  if (! LOG_ENABLED) {
+  if (typeof window === 'undefined') {
+    return
+  }
+  const enabled = localStorage.getItem('formiga-debug')
+  if (enabled !== 'true') {
     return
   }
   if (w=='form') {

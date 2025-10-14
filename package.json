@@ -1,6 +1,6 @@
 {
   "name": "formiga",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "The simplest -yet effective- form validator for React",
   "keywords": [
     "js",
@@ -54,7 +54,7 @@
     "reset": "npm run --silent clean-all && rm -fr node_modules package-lock.json && npm i"
   },
   "devDependencies": {
-    "xeira": "^2.0.0-beta.5"
+    "xeira": "^2.0.0-beta.6"
   },
   "peerDependencies": {
     "react": "^19.1.1"
