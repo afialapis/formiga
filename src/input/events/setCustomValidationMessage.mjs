@@ -4,12 +4,6 @@ import getInputValue from '../config/getInputValue.mjs'
 
 const setCustomValidationMessage = (node, validationMessage, transformValue) => {
 
-  //if (node.form.getAttribute('data-formiga-loaded')!='1') {
-  //  log_input(node, `setCustomValidity( ${validity || 'ok'} )... skipping, form not ready yet`)
-  //  return
-  //}
-  // log_input(node, `setCustomValidity( ${validity || 'ok'} )`)
-
   const prevValidationMessage = node.getAttribute('data-formiga-validity') 
   const prevValue = node.getAttribute('data-formiga-value') 
 
@@ -35,6 +29,13 @@ const setCustomValidationMessage = (node, validationMessage, transformValue) => 
           detail: {source: node}
         });
         node.form.dispatchEvent(event)
+      } else {
+        log_input(node, `setCustomValidity( ${validationMessage || 'ok'} ) ... Not ready for dispatching formiga-form-change, so saving as __unheardInputs`)
+
+        if (!node.form.__unheardInputs) {
+            node.form.__unheardInputs = new Set()
+        }
+        node.form.__unheardInputs.add(node)
       }
     }
   }

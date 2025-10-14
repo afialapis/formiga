@@ -13,17 +13,11 @@ const useForm = () => {
   //   Inits the elements array
   //
   const formRef = useCallback(node => {
-    log('form', `formRef callback...`)
-
     if (node!=null) {
+      log('form', `formRef callback...`)
+
       try {
         node.noValidate= true
-      } catch(e) {
-        console.error(e)
-      }
-
-      try {
-        node.setAttribute('data-formiga-loaded', '1')
       } catch(e) {
         console.error(e)
       }
