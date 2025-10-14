@@ -7,7 +7,7 @@ export default [
   
   // Opcional: añade reglas o configuraciones específicas para este proyecto
   {
-    files: ['src/**/*.mjs', 'src/**/*.jsx'],
+    files: ['src/**/*.mjs', 'src/**/*.jsx', 'demo/src/**/*.mjs', 'demo/src/**/*.jsx', 'demo/src/**/*.js'],
     rules: {
       'no-unused-vars': [
         "warn", // or "error"
